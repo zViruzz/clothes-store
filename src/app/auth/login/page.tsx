@@ -1,4 +1,5 @@
 'use client'
+import SignInButton from '@/components/SignInButton/SignInButton'
 import AuthForm from '@/components/ui/AuthForm'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -84,6 +85,10 @@ export default function loginPage() {
 							{`${errors.password.message}`}
 						</span>
 					)}
+				</div>
+
+				<div>
+					<SignInButton />
 				</div>
 
 				<div className='bg-blue-500 rounded-xl p-2'>

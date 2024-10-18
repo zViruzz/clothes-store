@@ -10,7 +10,6 @@ export default function registerPage() {
 		formState: { errors },
 	} = useForm()
 
-	console.log('🚀 ~ registerPage ~ errors:', errors)
 	const onSubmit = handleSubmit(async (data) => {
 		console.log(data)
 		const res = await fetch('/api/auth/register', {
