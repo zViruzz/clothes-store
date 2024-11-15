@@ -2,7 +2,7 @@ import { tv } from 'tailwind-variants'
 
 const stylesSlots = tv({
 	slots: {
-		container: 'border p-12 rounded-2xl',
+		gridContainer: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid grid-flow-row gap-4',
 	},
 })
 

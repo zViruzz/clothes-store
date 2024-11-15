@@ -11,9 +11,7 @@ interface Props {
 
 export default async function pageSearch({ searchParams }: Props) {
 	const { q } = await searchParams
-
 	const products = await getProduct({ query: q })
-	console.log('🚀 ~ pageSearch ~ products:', products)
 
 	return (
 		<>

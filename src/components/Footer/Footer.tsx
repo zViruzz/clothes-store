@@ -1,5 +1,5 @@
-import { container } from './FooterStyle'
+import { styles } from './FooterStyle'
 
 export default function Footer() {
-	return <footer className={container()}>Footer</footer>
+	return <footer className={styles.container()}>Footer</footer>
 }

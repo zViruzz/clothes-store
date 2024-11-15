@@ -1,58 +1,60 @@
 import Footer from '@/components/Footer'
+import { styles } from './styles'
+import Card from '@/components/Card/Card'
 
 export default function Home() {
 	return (
 		<>
-			<section className='mx-auto grid max-w-screen-2xl gap-4 px-4 pb-4 md:grid-cols-6 md:grid-rows-2 lg:max-h-[calc(100vh-200px)]'>
-				<div className='md:col-span-4 md:row-span-2 border rounded-2xl border-neutral-600'>
-					<a
-						className='relative block aspect-square h-full w-full'
-						href='/'
-					>
-						gol
-					</a>
-				</div>
-				<div className='md:col-span-2 md:row-span-1 border rounded-2xl border-neutral-600'>
-					<a
-						className='relative block aspect-square h-full w-full'
-						href='/'
-					>
-						gol
-					</a>
-				</div>
-				<div className='md:col-span-2 md:row-span-1 border rounded-2xl border-neutral-600'>
-					<a
-						className='relative block aspect-square h-full w-full'
-						href='/'
-					>
-						gol
-					</a>
-				</div>
+			<section className={styles.gridContainer()}>
+				<Card
+					className={styles.gridProductMain()}
+					typeStyle='main'
+					title='Pantalon de algodon'
+					price={60000}
+				/>
+				<Card
+					className={styles.gridProductItem()}
+					title='Pantalon de algodon'
+					price={1000}
+				/>
+				<Card
+					className={styles.gridProductItem()}
+					title='Pantalon de algodon'
+					price={1000}
+				/>
 			</section>
-			<section className='mx-auto grid max-w-screen-2xl gap-4 px-4 pb-4 md:grid-cols-6 md:grid-rows-2 lg:max-h-[calc(100vh-200px)]'>
-				<div className='md:col-span-4 md:row-span-2 border rounded-2xl border-neutral-600'>
-					<a
-						className='relative block aspect-square h-full w-full'
-						href='/'
-					>
-						gol
-					</a>
+
+			<section className={styles.featured()}>
+				<div className={styles.subheading()}>
+					<h2>Destacados</h2>
+					<div className={styles.line()} />
 				</div>
-				<div className='md:col-span-2 md:row-span-1 border rounded-2xl border-neutral-600'>
-					<a
-						className='relative block aspect-square h-full w-full'
-						href='/'
-					>
-						gol
-					</a>
-				</div>
-				<div className='md:col-span-2 md:row-span-1 border rounded-2xl border-neutral-600'>
-					<a
-						className='relative block aspect-square h-full w-full'
-						href='/'
-					>
-						gol
-					</a>
+				<div className={styles.cardContainer()}>
+					<Card
+						className={styles.gridProductItem()}
+						title='Pantalon de algodon'
+						price={1000}
+					/>
+					<Card
+						className={styles.gridProductItem()}
+						title='Pantalon de algodon'
+						price={1000}
+					/>
+					<Card
+						className={styles.gridProductItem()}
+						title='Pantalon de algodon'
+						price={1000}
+					/>
+					<Card
+						className={styles.gridProductItem()}
+						title='Pantalon de algodon'
+						price={1000}
+					/>
+					<Card
+						className={styles.gridProductItem()}
+						title='Pantalon de algodon'
+						price={1000}
+					/>
 				</div>
 			</section>
 
