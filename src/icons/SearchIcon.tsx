@@ -1,4 +1,4 @@
-import { SVGProps } from 'react'
+import type { SVGProps } from 'react'
 
 const SearchIcon = (props: SVGProps<SVGSVGElement>) => (
 	<svg
@@ -7,6 +7,7 @@ const SearchIcon = (props: SVGProps<SVGSVGElement>) => (
 		height='1em'
 		fill='none'
 		viewBox='0 0 24 24'
+		aria-hidden='true'
 		{...props}
 	>
 		<path
