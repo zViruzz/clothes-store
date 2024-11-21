@@ -5,8 +5,6 @@ import Navbar from '@/components/Navbar/Navbar'
 import { auth } from '@/utils/getSession'
 
 import { Quicksand } from 'next/font/google'
-import Image from 'next/image'
-import BackgroundMain from '@/components/BackgroundMain'
 
 const inter = Quicksand({
 	subsets: ['latin'],
@@ -31,7 +29,8 @@ export default async function RootLayout({
 				className={inter.className}
 				style={{
 					backgroundImage: 'url(bg.png)',
-					backgroundPosition: 'center',
+					backgroundPosition: 'top 200px',
+					backgroundRepeat: 'no-repeat',
 				}}
 			>
 				{/* <BackgroundMain /> */}

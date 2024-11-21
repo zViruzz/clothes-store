@@ -2,7 +2,7 @@ import { tv } from 'tailwind-variants'
 
 const stylesSlots = tv({
 	slots: {
-		container: ' rounded-[26px] border-neutral-600',
+		container: 'rounded-[26px]',
 		image: 'h-full w-full rounded-[26px] aspect-square',
 		link: 'block relative aspect-square h-full w-full',
 		overlay: 'absolute top-0 left-0 h-full w-full px-5',

@@ -15,8 +15,17 @@ const config: Config = withTV({
 				background: 'var(--background)',
 				foreground: 'var(--foreground)',
 			},
+			keyframes: {
+				scroll: {
+					'0%': { transform: 'translateX(0%)' },
+					'100%': { transform: 'translateX(calc(-384px * 5 - 80px - 320px ))' },
+				},
+			},
+			animation: {
+				carousel: 'scroll 40s linear infinite',
+			},
 		},
 	},
-	plugins: [],
+	plugins: [require('tailwind-scrollbar-hide')],
 })
 export default config

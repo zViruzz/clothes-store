@@ -5,7 +5,7 @@ const stylesSlots = tv({
 		formContainer:
 			'relative [&>svg]:absolute [&>svg]:top-1/2 [&>svg]:translate-y-[-50%] [&>svg]:right-4',
 		input:
-			'border w-[28rem] h-[2.5rem] bg-white px-5 rounded-full placeholder:text-black/70',
+			'border w-full md:w-[28rem] max-w-full h-[2.5rem] bg-white px-5 rounded-full placeholder:text-black/70',
 	},
 })
 
