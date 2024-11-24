@@ -1,8 +1,7 @@
+import Header from '@/components/Header/Header'
+// import { auth } from '@/utils/getSession'
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
 import './globals.css'
-import Navbar from '@/components/Navbar/Navbar'
-import { auth } from '@/utils/getSession'
 
 import { Quicksand } from 'next/font/google'
 
@@ -21,7 +20,7 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	const session = await auth()
+	// const session = await auth()
 
 	return (
 		<html lang='en'>
@@ -29,12 +28,11 @@ export default async function RootLayout({
 				className={inter.className}
 				style={{
 					backgroundImage: 'url(bg.png)',
-					backgroundPosition: 'top 200px',
+					backgroundPosition: '99px 0px',
 					backgroundRepeat: 'no-repeat',
 				}}
 			>
-				{/* <BackgroundMain /> */}
-				<Navbar session={session} />
+				<Header />
 				<main>{children}</main>
 			</body>
 		</html>

@@ -3,12 +3,12 @@ import type { Session } from 'next-auth'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import Search from '../Search/Search'
-import { styles } from './NavbarStyles'
+import { styles } from './HeaderStyles'
 import CloseIcon from '@/icons/CloseIcon'
 import MenuIcon from '@/icons/MenuIcon'
 import cn from '@/utils/cn'
 
-export default function Navbar() {
+export default function Header() {
 	const [isHiddenMenu, setIsHiddenMenu] = useState(true)
 	const handleClickMenu = () => {
 		setIsHiddenMenu(!isHiddenMenu)
