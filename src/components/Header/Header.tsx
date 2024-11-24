@@ -27,7 +27,7 @@ export default function Header() {
 					</div>
 
 					<div className={styles.navContainer()}>
-						<Link href='/search'>Productos</Link>
+						<Link href='/search'>Tienda</Link>
 						<Link href='/search'>Contacto</Link>
 					</div>
 
@@ -52,8 +52,8 @@ export default function Header() {
 						<Search />
 					</div>
 
-					<div>
-						<Link href='/search'>Productos</Link>
+					<div className={styles.listContainer()}>
+						<Link href='/search'>Tienda</Link>
 						<Link href='/search'>Contacto</Link>
 					</div>
 				</div>
