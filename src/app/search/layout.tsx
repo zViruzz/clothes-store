@@ -8,25 +8,22 @@ export default function LayoutSearch({ children }: { children: React.ReactNode }
 			<div className={styles.layoutContainer()}>
 				<div className={styles.sideNav()}>
 					<nav className={styles.navContainer()}>
-						<h3 className={styles.navTitle()}>Collections</h3>
+						<h3 className={styles.navTitle()}>Colecciones</h3>
 						<ul>
 							<li>
-								<Link href='/search/huawait'>Huawait</Link>
+								<Link href='/search/pants'>Pantalones</Link>
 							</li>
 							<li>
-								<Link href='/search/google'>Google</Link>
+								<Link href='/search/shirt'>Camisetas</Link>
 							</li>
 							<li>
-								<Link href='/search/lenovo'>Lenovo</Link>
+								<Link href='/search/dress'>Vestidos</Link>
 							</li>
 							<li>
-								<Link href='/search/samsung'>Samsung</Link>
+								<Link href='/search/jarket'>Camperas</Link>
 							</li>
 							<li>
-								<Link href='/search/one-plust'>OnePlus</Link>
-							</li>
-							<li>
-								<Link href='/search/apple'>Apple</Link>
+								<Link href='/search/short'>Short</Link>
 							</li>
 						</ul>
 					</nav>
@@ -36,12 +33,12 @@ export default function LayoutSearch({ children }: { children: React.ReactNode }
 
 				<div className={styles.filterNav()}>
 					<nav className={styles.navContainer()}>
-						<p className={styles.navTitle()}>FilterList</p>
+						<p className={styles.navTitle()}>Filtrar</p>
 						<ul>
 							<li>Rosa</li>
-							<li>Green</li>
-							<li>Blue</li>
-							<li>Yellow</li>
+							<li>Azul</li>
+							<li>Blanco</li>
+							<li>Amarillo</li>
 						</ul>
 					</nav>
 				</div>

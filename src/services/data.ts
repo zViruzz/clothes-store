@@ -1,8 +1,8 @@
 export const products = [
 	{
 		id: '1',
-		title: 'Mac',
-		category: 'Laptops',
+		title: 'Pantalón Ranita, Medio Osito',
+		category: 'pants',
 		url_images: [
 			'https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg',
 			'https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg',
@@ -12,16 +12,16 @@ export const products = [
 	},
 	{
 		id: '2',
-		title: 'Iphone',
-		category: 'Phones',
+		title: 'Body Camiseta',
+		category: 'shirt',
 		url_images: [
 			'https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg',
 		],
 	},
 	{
 		id: '3',
-		title: 'Samsung',
-		category: 'Phones',
+		title: 'Pantalón con Puño bebe',
+		category: 'pants',
 		url_images: [
 			'https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg',
 			'https://littleparadise.com.ar/wp-content/uploads/2021/06/Jardinero_Venice_bebe_nacimiento_regalo_gris_arena_baby_little_paradise-1-rotated-400x480.jpg',
@@ -30,30 +30,30 @@ export const products = [
 	},
 	{
 		id: '4',
-		title: 'Xiaomi',
-		category: 'Phones',
+		title: 'Vestido baby',
+		category: 'dress',
 		url_images: [
 			'https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg',
 		],
 	},
 	{
 		id: '5',
-		title: 'Huawei',
-		category: 'Phones',
+		title: 'Campera Media Temporada',
+		category: 'jarket',
+		url_images: [
+			'https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg',
+		],
+	},
+	{
+		id: '6',
+		title: 'Body Manga Corta',
+		category: 'shirt',
 		url_images: [
 			'https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg',
 		],
 	},
 	{
 		id: '7',
-		title: 'Vivo',
-		category: 'Phones',
-		url_images: [
-			'https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg',
-		],
-	},
-	{
-		id: '8',
 		title: 'Realme',
 		category: 'Phones',
 		url_images: [
@@ -61,7 +61,7 @@ export const products = [
 		],
 	},
 	{
-		id: '9',
+		id: '8',
 		title: 'Oppo',
 		category: 'Phones',
 		url_images: [
