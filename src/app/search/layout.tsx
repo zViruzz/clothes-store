@@ -1,13 +1,14 @@
 import Footer from '@/components/Footer'
 import Link from 'next/link'
+import { styles } from './styles'
 
 export default function LayoutSearch({ children }: { children: React.ReactNode }) {
 	return (
 		<>
-			<div className='mx-auto flex max-w-screen-2xl flex-col gap-8 px-4 pb-4 text-black md:flex-row dark:text-white'>
-				<div className='order-first w-full flex-none md:max-w-[125px]'>
-					<nav className='hidden md:flex flex-col'>
-						<p className='text-xl'>Collections</p>
+			<div className={styles.layoutContainer()}>
+				<div className={styles.sideNav()}>
+					<nav className={styles.navContainer()}>
+						<h3 className={styles.navTitle()}>Collections</h3>
 						<ul>
 							<li>
 								<Link href='/search/huawait'>Huawait</Link>
@@ -30,14 +31,12 @@ export default function LayoutSearch({ children }: { children: React.ReactNode }
 						</ul>
 					</nav>
 				</div>
-				<section className='order-last min-h-screen w-full md:order-none'>
-					ChildrenWrapper
-					{children}
-				</section>
 
-				<div className='order-none flex-none md:order-last md:w-[125px]'>
-					<nav className='hidden md:flex flex-col'>
-						<p className='text-xl'>FilterList</p>
+				<section className={styles.sectionWrapper()}>{children}</section>
+
+				<div className={styles.filterNav()}>
+					<nav className={styles.navContainer()}>
+						<p className={styles.navTitle()}>FilterList</p>
 						<ul>
 							<li>Rosa</li>
 							<li>Green</li>
