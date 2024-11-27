@@ -14,6 +14,15 @@ export const getProduct = async ({ query }: getProductProps): Promise<Product[]>
 	return newProducts
 }
 
+export const getProductByColor = async ({
+	color,
+}: { color: string }): Promise<Product[]> => {
+	const newProducts = products.filter((product) => {
+		return product.color_scheme.some((item) => item === color)
+	})
+	return newProducts
+}
+
 export const getProductById = async (id: string): Promise<Product | Error> => {
 	try {
 		const newProducts = products.find((product) => product.id === id)
