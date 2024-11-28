@@ -1,6 +1,7 @@
 import GridView from '@/components/GridView/GridView'
 import ProductGridItem from '@/components/ProductGridItem/ProductGridItem'
 import { getProduct, getProductByColor } from '@/services/product'
+import { styles } from './styles'
 
 interface Props {
   searchParams: Promise<{
@@ -17,7 +18,7 @@ export default async function pageSearch({ searchParams }: Props) {
 
   return (
     <>
-      <div>{q && <p>name: {q}</p>}</div>
+      <div>{q && <p className={styles.textSearch()}>Busqueda: {q}</p>}</div>
       <GridView>
         <ProductGridItem products={products} />
       </GridView>

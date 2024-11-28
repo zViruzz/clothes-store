@@ -1,7 +1,7 @@
+import { cn } from '@/lib/utils'
+import Image from 'next/image'
 import Link from 'next/link'
 import { styles } from './CardStyles'
-import cn from '@/utils/cn'
-import Image from 'next/image'
 
 interface Props {
 	price: number

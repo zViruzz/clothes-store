@@ -2,22 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-	--background: #ffffff;
-	--foreground: #171717;
-}
-
 /*@media (prefers-color-scheme: dark) {*/
 /*	:root {*/
 /*		--background: #0a0a0a;*/
 /*		--foreground: #ededed;*/
 /*	}*/
 /*}*/
-
-body {
-	color: var(--foreground);
-	background: var(--background);
-}
 
 body {
 	margin: 0;
@@ -39,4 +29,10 @@ img {
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
+}
+
+@layer base {
+  :root {
+		--radius: 0.5rem;
+	}
 }

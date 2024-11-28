@@ -27,7 +27,7 @@ export default async function RootLayout({
 			<body
 				className={inter.className}
 				style={{
-					backgroundImage: 'url(bg.png)',
+					// backgroundImage: 'url(bg.png)',
 					backgroundPosition: '99px 0px',
 					backgroundRepeat: 'no-repeat',
 				}}
