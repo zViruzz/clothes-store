@@ -1,5 +1,4 @@
 import Header from '@/components/Header/Header'
-// import { auth } from '@/utils/getSession'
 import type { Metadata } from 'next'
 import './globals.css'
 
@@ -21,8 +20,6 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	// const session = await auth()
-
 	return (
 		<html lang='en' className='relative'>
 			<body className={inter.className}>

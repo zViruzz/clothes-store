@@ -4,7 +4,7 @@ const stylesSlots = tv({
 	slots: {
 		container: 'sticky md:static w-full h-full top-0 z-30',
 		containerHeader:
-			'md:border-b  backdrop-opacity-80 md:backdrop-opacity-50 bg-white/50 md:bg-white/20 backdrop-blur-xl md:backdrop-blur-2xl w-full h-20 px-5 md:px-[3%] grid items-center top-0 text-black md:grid-cols-3 grid-cols-2 ',
+			'border-b  backdrop-opacity-80 md:backdrop-opacity-50 bg-white/50 md:bg-white/20 backdrop-blur-xl md:backdrop-blur-2xl w-full h-20 px-5 md:px-[3%] grid items-center top-0 text-black md:grid-cols-3 grid-cols-2 ',
 		logoContainer: 'flex text-2xl font-bold',
 		searchContainer: 'md:flex hidden justify-center',
 		navContainer:
