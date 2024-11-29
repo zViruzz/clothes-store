@@ -3,13 +3,11 @@ import { getProductById } from '@/services/product'
 import React from 'react'
 
 interface Props {
-	params: {
-		id: string
-	}
+	params: Promise<{ id: string }>
 }
 
 export default async function ProductPage({ params }: Props) {
-	const { id } = params
+	const { id } = await params
 	const product = await getProductById(id)
 
 	if (product instanceof Error) {

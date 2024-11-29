@@ -11,7 +11,7 @@ export default function ProductGridItem({ products }: Props) {
 		<>
 			{products.map((product) => (
 				<li key={product.id}>
-					<Card title={product.title} price={3000} />
+					<Card id={product.id} title={product.title} price={3000} />
 				</li>
 			))}
 		</>

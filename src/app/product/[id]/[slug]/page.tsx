@@ -1,17 +1,29 @@
-// pages/product/[id]/[slug].js
-// import { useRouter } from 'next/router'
+import ImagesPreview from '@/components/ImagesPreview/ImagesPreview'
+import { getProductById } from '@/services/product'
 
-const ProductPage = () => {
-	// const router = useRouter()
-	// const { id, slug } = router.query
+interface Props {
+	params: Promise<{ id: string; slug: string }>
+}
 
-	// Aquí puedes usar el `id` para buscar el producto en tu base de datos
+export default async function SlugPage({ params }: Props) {
+	const { id, slug } = await params
+	const product = await getProductById(id)
+
+	if (product instanceof Error) {
+		throw new Error('Product not found')
+	}
+
 	return (
 		<div>
-			{/* <h1>Producto: {slug}</h1> */}
-			{/* <p>ID: {id}</p> */}
+			<section className='grid grid-cols-[3fr_1.5fr] border mx-[10%] p-14'>
+				<ImagesPreview product={product} />
+				<div>
+					<div>
+						<h1 className='text-3xl'>{product.title}</h1>,<p>skjsfkasj</p>
+					</div>
+				</div>
+			</section>
+			<div>product lists</div>
 		</div>
 	)
 }
-
-export default ProductPage
