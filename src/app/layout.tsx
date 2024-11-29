@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 import { Quicksand } from 'next/font/google'
+import Background from '@/components/Background/Background'
 
 const inter = Quicksand({
 	subsets: ['latin'],
@@ -23,15 +24,9 @@ export default async function RootLayout({
 	// const session = await auth()
 
 	return (
-		<html lang='en'>
-			<body
-				className={inter.className}
-				style={{
-					// backgroundImage: 'url(bg.png)',
-					backgroundPosition: '99px 0px',
-					backgroundRepeat: 'no-repeat',
-				}}
-			>
+		<html lang='en' className='relative'>
+			<body className={inter.className}>
+				<Background />
 				<Header />
 				<main>{children}</main>
 			</body>
