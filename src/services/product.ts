@@ -1,11 +1,12 @@
 import type { Product } from '../../types'
-import { products } from './data'
+import prisma from '../libs/prisma'
 
 interface getProductProps {
 	query?: string
 }
 
 export const getProduct = async ({ query }: getProductProps): Promise<Product[]> => {
+	const products = await prisma.product.findMany()
 	if (!query) return products
 
 	const newProducts = products.filter((product) => {
@@ -17,14 +18,16 @@ export const getProduct = async ({ query }: getProductProps): Promise<Product[]>
 export const getProductByColor = async ({
 	color,
 }: { color: string }): Promise<Product[]> => {
+	const products = await prisma.product.findMany()
 	const newProducts = products.filter((product) => {
 		return product.color_scheme.some((item) => item === color)
 	})
 	return newProducts
 }
 
-export const getProductById = async (id: string): Promise<Product | Error> => {
+export const getProductById = async (id: number): Promise<Product | Error> => {
 	try {
+		const products = await prisma.product.findMany()
 		const newProducts = products.find((product) => product.id === id)
 
 		if (!newProducts) {
@@ -39,6 +42,7 @@ export const getProductById = async (id: string): Promise<Product | Error> => {
 export const getProductsByCategory = async ({
 	category,
 }: { category: string }): Promise<Product[]> => {
+	const products = await prisma.product.findMany()
 	const newProducts = products.filter((product) => {
 		return product.category.includes(category)
 	})

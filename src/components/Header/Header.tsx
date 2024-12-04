@@ -6,7 +6,7 @@ import Search from '../Search/Search'
 import { styles } from './HeaderStyles'
 import CloseIcon from '@/icons/CloseIcon'
 import MenuIcon from '@/icons/MenuIcon'
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 
 export default function Header() {
 	const [isHiddenMenu, setIsHiddenMenu] = useState(true)
