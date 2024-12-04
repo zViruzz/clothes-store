@@ -8,18 +8,24 @@ export default function Home() {
 		<>
 			<section className={styles.gridContainer()}>
 				<Card
+					id='1'
 					className={styles.gridProductMain()}
 					typeStyle='main'
+					name='pantalon-de-algodon'
 					title='Pantalon de algodon'
 					price={60000}
 				/>
 				<Card
+					id='2'
 					className={styles.gridProductItem()}
+					name='pantalon-de-algodon'
 					title='Pantalon de algodon'
 					price={1000}
 				/>
 				<Card
+					id='3'
 					className={styles.gridProductItem()}
+					name='pantalon-de-algodon'
 					title='Pantalon de algodon'
 					price={1000}
 				/>

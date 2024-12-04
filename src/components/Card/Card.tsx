@@ -6,27 +6,26 @@ import { styles } from './CardStyles'
 import { useState } from 'react'
 
 interface Props {
-	id: string
+	id: number
 	price?: number
+	name: string
 	title: string
 	className?: string
 	typeStyle?: 'main' | 'default'
 }
 
-export default function Card({ id, title, className, typeStyle = 'default' }: Props) {
+export default function Card({
+	id,
+	name,
+	title,
+	className,
+	typeStyle = 'default',
+}: Props) {
 	const [isLoading, setIsLoading] = useState(true)
-	const generateSlug = (title: string) => {
-		return title
-			.toLowerCase()
-			.replace(/\s+/g, '-')
-			.replace(/[^\w-]+/g, '')
-	}
-
-	const slug = generateSlug(title)
 
 	return (
 		<div className={cn(styles.container(), className)}>
-			<Link className={styles.link()} href={`/product/${id}/${slug}`}>
+			<Link className={styles.link()} href={`/product/${id}/${name}`}>
 				<Image
 					draggable='false'
 					src='https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg'
