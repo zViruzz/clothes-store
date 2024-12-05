@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { styles } from './CardStyles'
 import { useState } from 'react'
+import { isLoadingImage } from '@/app/styles/variants'
 
 interface Props {
 	id: number
@@ -29,7 +30,7 @@ export default function Card({
 				<Image
 					draggable='false'
 					src='https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg'
-					className={styles.image({ isLoadingCard: isLoading })}
+					className={cn(styles.image(), isLoadingImage({ isLoading }))}
 					alt='shoes'
 					width={900}
 					height={900}

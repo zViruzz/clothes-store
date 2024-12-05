@@ -22,14 +22,6 @@ const stylesSlots = tv({
 				label: 'w-full',
 			},
 		},
-		isLoadingCard: {
-			true: {
-				image: 'grayscale blur-2xl scale-110',
-			},
-			false: {
-				image: 'grayscale-0 blur-0 scale-100 ',
-			},
-		},
 	},
 })
 
