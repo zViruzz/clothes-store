@@ -23,6 +23,7 @@ model Product {
   category     String
   price        Float    @default(0)
   color_scheme String[]
+  sizes        String[]
   url_images   String[]
   createdAt    DateTime @default(now())
 }

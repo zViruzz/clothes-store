@@ -6,6 +6,7 @@ export type Product = {
 	description: string
 	price: number
 	color_scheme: string[]
+	sizes: string[]
 	url_images: string[]
 	createdAt: Date
 }

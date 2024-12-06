@@ -7,6 +7,7 @@ CREATE TABLE "Product" (
     "category" TEXT NOT NULL,
     "price" DOUBLE PRECISION NOT NULL DEFAULT 0,
     "color_scheme" TEXT[],
+    "sizes" TEXT[],
     "url_images" TEXT[],
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
