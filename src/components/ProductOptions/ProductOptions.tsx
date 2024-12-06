@@ -13,7 +13,7 @@ interface Props {
 
 export default function ProductOptions({ product }: Props) {
 	const [color, setColor] = useState(product.color_scheme[0])
-	const [size, setSize] = useState('')
+	const [size, setSize] = useState('S')
 	const [quantity, setQuantity] = useState(1)
 	const { addProductCart } = useCartContext()
 
@@ -24,6 +24,14 @@ export default function ProductOptions({ product }: Props) {
 		setSize(size)
 	}
 
+	const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = Number(e.target.value)
+
+		if (value >= 0) {
+			setQuantity(value)
+		}
+	}
+
 	const handleClickAddProductCart = () => {
 		addProductCart({
 			id: product.id,
@@ -32,18 +40,10 @@ export default function ProductOptions({ product }: Props) {
 			category: product.category,
 			price: product.price,
 			url_images: product.url_images,
+			quantity,
 			color,
 			size,
-			quantity,
 		})
-	}
-
-	const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const value = Number(e.target.value)
-
-		if (value >= 0) {
-			setQuantity(value)
-		}
 	}
 
 	return (
@@ -74,14 +74,14 @@ export default function ProductOptions({ product }: Props) {
 					</button>
 					<button
 						type='button'
-						onClick={() => handleClickSize('S')}
+						onClick={() => handleClickSize('M')}
 						className={styles.button()}
 					>
 						M
 					</button>
 					<button
 						type='button'
-						onClick={() => handleClickSize('S')}
+						onClick={() => handleClickSize('XS')}
 						className={styles.button()}
 					>
 						XS

@@ -18,7 +18,34 @@ export const CartProvider = ({ children }: CartProps) => {
 	const [cart, setCart] = useState<CartProduct[]>(EmptyCartState)
 
 	const addProductCart = (product: CartProduct) => {
-		console.warn('DEBUGPRINT[1]: card.context.tsx:23: product=', product)
+		console.warn('DEBUGPRINT[1]: card.context.tsx:21: product=', product)
+		const isProductInCart = cart.some(
+			(item) =>
+				item.id === product.id &&
+				item.size === product.size &&
+				item.color === product.color,
+		)
+
+		if (isProductInCart) {
+			const updatedCart = cart.map((item) => {
+				if (
+					item.id === product.id &&
+					item.size === product.size &&
+					item.color === product.color
+				) {
+					return {
+						...item,
+						quantity: item.quantity + product.quantity,
+					}
+				}
+				return item
+			})
+			console.warn('DEBUGPRINT[3]: card.context.tsx:36: updatedCart=', updatedCart)
+			setCart(updatedCart)
+			return
+		}
+
+		console.warn('DEBUGPRINT[2]: card.context.tsx:41: cart=', [...cart, product])
 		setCart([...cart, product])
 	}
 
