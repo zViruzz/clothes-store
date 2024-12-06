@@ -4,6 +4,7 @@ import './globals.css'
 
 import { Quicksand } from 'next/font/google'
 import Background from '@/components/Background/Background'
+import { CartProvider } from '@/components/context/card.context'
 
 const inter = Quicksand({
 	subsets: ['latin'],
@@ -23,9 +24,11 @@ export default async function RootLayout({
 	return (
 		<html lang='en' className='relative'>
 			<body className={inter.className}>
-				<Background />
-				<Header />
-				<main>{children}</main>
+				<CartProvider>
+					<Background />
+					<Header />
+					<main>{children}</main>
+				</CartProvider>
 			</body>
 		</html>
 	)
