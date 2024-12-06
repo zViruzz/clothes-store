@@ -5,6 +5,7 @@ import { styles } from './ProductOptionsStyles'
 import TruckIcon from '@/icons/TruckIcon'
 import { useCartContext } from '../context/card.context'
 import { useState } from 'react'
+import { cn } from '@/libs/utils'
 
 interface Props {
 	product: Product
@@ -53,7 +54,7 @@ export default function ProductOptions({ product }: Props) {
 					{product.color_scheme.map((color) => (
 						<button
 							type='button'
-							className={`${styles.colorBox()} bg-${color.toLowerCase()}-500`}
+							className={cn(styles.button(), `bg-${color.toLowerCase()}-500`)}
 							key={color}
 							onClick={() => handleClickColor(color)}
 						/>
@@ -67,21 +68,21 @@ export default function ProductOptions({ product }: Props) {
 					<button
 						type='button'
 						onClick={() => handleClickSize('S')}
-						className={styles.buttonSize()}
+						className={styles.button()}
 					>
 						S
 					</button>
 					<button
 						type='button'
 						onClick={() => handleClickSize('S')}
-						className={styles.buttonSize()}
+						className={styles.button()}
 					>
 						M
 					</button>
 					<button
 						type='button'
 						onClick={() => handleClickSize('S')}
-						className={styles.buttonSize()}
+						className={styles.button()}
 					>
 						XS
 					</button>
@@ -93,7 +94,7 @@ export default function ProductOptions({ product }: Props) {
 				<div className={styles.quantityContainer()}>
 					<button
 						type='button'
-						className={styles.buttonQuantity()}
+						className={styles.button()}
 						onClick={() => setQuantity((prev) => (prev <= 1 ? 1 : prev - 1))}
 					>
 						-
@@ -106,7 +107,7 @@ export default function ProductOptions({ product }: Props) {
 					/>
 					<button
 						type='button'
-						className={styles.buttonQuantity()}
+						className={styles.button()}
 						onClick={() => setQuantity((prev) => prev + 1)}
 					>
 						+
@@ -117,7 +118,7 @@ export default function ProductOptions({ product }: Props) {
 			<div>
 				<button
 					type='button'
-					className={styles.button()}
+					className={styles.buttonCart()}
 					onClick={handleClickAddProductCart}
 				>
 					Agregar a carrito
