@@ -21,7 +21,16 @@ body {
 		text-wrap: balance;
 	}
 }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
 
+/* Para Firefox */
+input[type="number"] {
+	-moz-appearance: textfield;
+}
 img {
 	user-drag: none;
 	-webkit-user-drag: none;

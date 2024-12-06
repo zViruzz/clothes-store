@@ -37,6 +37,14 @@ export default function ProductOptions({ product }: Props) {
 		})
 	}
 
+	const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = Number(e.target.value)
+
+		if (value >= 0) {
+			setQuantity(value)
+		}
+	}
+
 	return (
 		<div className={styles.borderTop()}>
 			<div>
@@ -52,6 +60,7 @@ export default function ProductOptions({ product }: Props) {
 					))}
 				</div>
 			</div>
+
 			<div>
 				<p>Talla : </p>
 				<div className={styles.sizeContainer()}>
@@ -75,6 +84,32 @@ export default function ProductOptions({ product }: Props) {
 						className={styles.buttonSize()}
 					>
 						XS
+					</button>
+				</div>
+			</div>
+
+			<div>
+				<p>{'Cantidad : '}</p>
+				<div className={styles.quantityContainer()}>
+					<button
+						type='button'
+						className={styles.buttonQuantity()}
+						onClick={() => setQuantity((prev) => (prev <= 1 ? 1 : prev - 1))}
+					>
+						-
+					</button>
+					<input
+						type='text'
+						className={styles.inputQuantity()}
+						onChange={handleChangeQuantity}
+						value={quantity}
+					/>
+					<button
+						type='button'
+						className={styles.buttonQuantity()}
+						onClick={() => setQuantity((prev) => prev + 1)}
+					>
+						+
 					</button>
 				</div>
 			</div>
