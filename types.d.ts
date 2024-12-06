@@ -15,7 +15,6 @@ export type CartProduct = {
 	name: string
 	title: string
 	category: string
-	description: string
 	price: number
 	color: string
 	size: string

@@ -26,8 +26,8 @@ export default function ProductOptions({ product }: Props) {
 	const handleClickAddProductCart = () => {
 		addProductCart({
 			id: product.id,
-			title: product.title,
 			name: product.name,
+			title: product.title,
 			category: product.category,
 			price: product.price,
 			url_images: product.url_images,
