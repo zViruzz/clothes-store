@@ -40,6 +40,11 @@ export default function Header() {
 					</div>
 
 					<div className={styles.buttonContainer()}>
+						<button type='button' className={styles.buttonCart()}>
+							<CartIcon width={34} height={34} />
+							{cart?.length > 0 && <span>{cart.length}</span>}
+						</button>
+
 						<button type='button' onClick={handleClickMenu}>
 							<MenuIcon
 								className={cn(!isHiddenMenu && 'hidden')}
