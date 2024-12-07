@@ -22,6 +22,10 @@ export default async function SlugPage({ params }: Props) {
 				<div>
 					<div>
 						<h1 className={styles.title()}>{product.title}</h1>
+						<div className={styles.priceContainer()}>
+							<span className={styles.price()}>{`$ ${product.price}`}</span>
+							<span className={styles.currency()}>ARS</span>
+						</div>
 						<p className={styles.description()}>{product.description}</p>
 					</div>
 					<ProductOptions product={product} />
