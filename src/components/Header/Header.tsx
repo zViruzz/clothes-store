@@ -7,9 +7,13 @@ import { styles } from './HeaderStyles'
 import CloseIcon from '@/icons/CloseIcon'
 import MenuIcon from '@/icons/MenuIcon'
 import { cn } from '@/libs/utils'
+import { useCartContext } from '../context/card.context'
+import CartIcon from '@/icons/CartIcon'
 
 export default function Header() {
 	const [isHiddenMenu, setIsHiddenMenu] = useState(true)
+	const { cart } = useCartContext()
+
 	const handleClickMenu = () => {
 		setIsHiddenMenu(!isHiddenMenu)
 	}
@@ -29,6 +33,10 @@ export default function Header() {
 					<div className={styles.navContainer()}>
 						<Link href='/search'>Tienda</Link>
 						<Link href='/search'>Contacto</Link>
+						<button type='button' className={styles.buttonCart()}>
+							<CartIcon width={32} height={32} />
+							{cart?.length > 0 && <span>{cart.length}</span>}
+						</button>
 					</div>
 
 					<div className={styles.buttonContainer()}>

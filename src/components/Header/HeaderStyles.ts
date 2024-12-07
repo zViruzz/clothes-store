@@ -9,6 +9,8 @@ const stylesSlots = tv({
 		searchContainer: 'md:flex hidden justify-center',
 		navContainer:
 			'hidden md:flex gap-8 text-xl justify-end font-medium [&_a]:text-neutral-600 hover:[&_a]:text-black',
+		buttonCart:
+			'flex justify-center items-center relative text-neutral-600 hover:text-black [&>span]:absolute [&>span]:-top-2 [&>span]:-right-2 [&>span]:text-neutral-500 [&>span]:text-sm [&>span]:w-5 [&>span]:h-5 [&>span]:flex [&>span]:justify-center [&>span]:items-center [&>span]:bg-primary  [&>span]:rounded-full',
 		buttonContainer:
 			'md:hidden flex justify-end [&_svg]:text-black/40 hover:[&_svg]:text-black',
 		menuButtonClose: 'flex justify-end [&>button]:pb-4 [&>button]:text-black',
