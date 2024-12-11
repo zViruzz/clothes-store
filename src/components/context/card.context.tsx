@@ -30,6 +30,59 @@ const EmptyCartState: CartProduct[] = [
 		],
 		quantity: 2,
 	},
+
+	{
+		id: 3,
+		name: 'pantalon',
+		title: 'Pantalon',
+		category: 'pants',
+		price: 5500,
+		color: 'white',
+		size: 'M',
+		url_images: [
+			'https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg',
+		],
+		quantity: 2,
+	},
+	{
+		id: 4,
+		name: 'pantalon',
+		title: 'Pantalon',
+		category: 'pants',
+		price: 5500,
+		color: 'white',
+		size: 'M',
+		url_images: [
+			'https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg',
+		],
+		quantity: 2,
+	},
+	{
+		id: 5,
+		name: 'pantalon',
+		title: 'Pantalon',
+		category: 'pants',
+		price: 5500,
+		color: 'white',
+		size: 'M',
+		url_images: [
+			'https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg',
+		],
+		quantity: 2,
+	},
+	{
+		id: 6,
+		name: 'pantalon',
+		title: 'Pantalon',
+		category: 'pants',
+		price: 5500,
+		color: 'white',
+		size: 'M',
+		url_images: [
+			'https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg',
+		],
+		quantity: 2,
+	},
 ]
 
 interface CartProps {

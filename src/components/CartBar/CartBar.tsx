@@ -1,23 +1,12 @@
 'use client'
-import useQuantity from '@/hooks/useQuantity'
 import CloseIcon from '@/icons/CloseIcon'
-import CloseIconMin from '@/icons/CloseIconMin'
-import Image from 'next/image'
 import { useEffect } from 'react'
+import CartCard from '../CartCard/CartCard'
 import { useCartContext } from '../context/card.context'
-import QuantityPicker from '../QuantityPicker/QuantityPicker'
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from '../ui/select'
 import { styles } from './CartBarStyles'
 
 export default function CartBar() {
 	const { showCartBar, cart, setShowCartBar } = useCartContext()
-	const { quantity, setQuantity, handleChangeQuantity } = useQuantity()
 
 	useEffect(() => {
 		if (showCartBar) {
@@ -33,8 +22,6 @@ export default function CartBar() {
 			}
 		}
 	}, [showCartBar])
-
-	const handleChangeSelectSize = (value: string) => {}
 
 	const handleClickCloseBar = () => {
 		setShowCartBar(false)
@@ -55,52 +42,13 @@ export default function CartBar() {
 				</div>
 				<div className={styles.cartContainer()}>
 					{cart.map((item) => (
-						<div key={item.id} className={styles.cart()}>
-							<button className={styles.deleteButton()} type='button'>
-								<CloseIconMin width={25} height={25} />
-							</button>
-							<div className={styles.cartImage()}>
-								<Image src={item.url_images[0]} width={70} height={70} alt={item.name} />
-							</div>
-							<div className={styles.cartEdit()}>
-								<div>
-									<span className={styles.title()}>{item.title}</span>
-									<span className={styles.price()}>${item.price}</span>
-								</div>
-								<div className={styles.quantityContainer()}>
-									<QuantityPicker
-										setQuantity={setQuantity}
-										quantity={quantity}
-										handleChangeQuantity={handleChangeQuantity}
-									/>
-								</div>
-								<div className={styles.selectContainer()}>
-									<Select>
-										<SelectTrigger className='w-[120px]'>
-											<SelectValue placeholder='Color' />
-										</SelectTrigger>
-										<SelectContent>
-											<SelectItem value='1'>1</SelectItem>
-											<SelectItem value='2'>2</SelectItem>
-											<SelectItem value='3'>3</SelectItem>
-											<SelectItem value='4'>4</SelectItem>
-										</SelectContent>
-									</Select>
-									<Select onValueChange={handleChangeSelectSize}>
-										<SelectTrigger className='w-[120px]'>
-											<SelectValue placeholder='Size' />
-										</SelectTrigger>
-										<SelectContent>
-											<SelectItem value='1'>1</SelectItem>
-											<SelectItem value='2'>2</SelectItem>
-											<SelectItem value='3'>3</SelectItem>
-											<SelectItem value='4'>4</SelectItem>
-										</SelectContent>
-									</Select>
-								</div>
-							</div>
-						</div>
+						<CartCard key={item.id} {...item} />
 					))}
+				</div>
+				<div>
+					<button className={styles.orderButton()} type='button'>
+						Hacer pedido
+					</button>
 				</div>
 			</div>
 		</div>
