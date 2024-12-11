@@ -3,7 +3,34 @@ import { createContext, useContext } from 'react'
 import { type ReactNode, useState } from 'react'
 import type { CartProduct } from '../../../types'
 
-const EmptyCartState: CartProduct[] = []
+const EmptyCartState: CartProduct[] = [
+	{
+		id: 0,
+		name: 'remera',
+		title: 'Remera',
+		category: 'shirt',
+		price: 7000,
+		color: 'pink',
+		size: 'X',
+		url_images: [
+			'https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg',
+		],
+		quantity: 1,
+	},
+	{
+		id: 1,
+		name: 'pantalon',
+		title: 'Pantalon',
+		category: 'pants',
+		price: 5500,
+		color: 'white',
+		size: 'M',
+		url_images: [
+			'https://acdn.mitiendanube.com/stores/211/292/products/set-de-nacimiento-pajaritos-coral-gubee-edeb4bd944a3dee91d17127006129682-480-0.jpg',
+		],
+		quantity: 2,
+	},
+]
 
 interface CartProps {
 	children: ReactNode
@@ -12,9 +39,12 @@ interface CartProps {
 interface CartContextType {
 	cart: CartProduct[]
 	addProductCart: (product: CartProduct) => void
+	showCartBar: boolean
+	setShowCartBar: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const CartProvider = ({ children }: CartProps) => {
+	const [showCartBar, setShowCartBar] = useState(false)
 	const [cart, setCart] = useState<CartProduct[]>(EmptyCartState)
 
 	const addProductCart = (product: CartProduct) => {
@@ -50,7 +80,7 @@ export const CartProvider = ({ children }: CartProps) => {
 	}
 
 	return (
-		<CartContext.Provider value={{ cart, addProductCart }}>
+		<CartContext.Provider value={{ cart, addProductCart, showCartBar, setShowCartBar }}>
 			{children}
 		</CartContext.Provider>
 	)
@@ -59,6 +89,8 @@ export const CartProvider = ({ children }: CartProps) => {
 export const CartContext = createContext<CartContextType>({
 	cart: EmptyCartState,
 	addProductCart: () => {},
+	showCartBar: false,
+	setShowCartBar: () => {},
 })
 
 export const useCartContext = () => {

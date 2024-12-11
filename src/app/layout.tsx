@@ -1,10 +1,10 @@
+import Background from '@/components/Background/Background'
+import CartBar from '@/components/CartBar/CartBar'
+import { CartProvider } from '@/components/context/card.context'
 import Header from '@/components/Header/Header'
 import type { Metadata } from 'next'
-import './globals.css'
-
 import { Quicksand } from 'next/font/google'
-import Background from '@/components/Background/Background'
-import { CartProvider } from '@/components/context/card.context'
+import './globals.css'
 
 const inter = Quicksand({
 	subsets: ['latin'],
@@ -25,6 +25,7 @@ export default async function RootLayout({
 		<html lang='en' className='relative'>
 			<body className={inter.className}>
 				<CartProvider>
+					<CartBar />
 					<Background />
 					<Header />
 					<main>{children}</main>

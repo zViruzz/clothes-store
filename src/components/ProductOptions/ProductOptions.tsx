@@ -6,6 +6,8 @@ import TruckIcon from '@/icons/TruckIcon'
 import { useCartContext } from '../context/card.context'
 import { useState } from 'react'
 import { cn } from '@/libs/utils'
+import QuantityPicker from '../QuantityPicker/QuantityPicker'
+import useQuantity from '@/hooks/useQuantity'
 
 interface Props {
 	product: Product
@@ -14,22 +16,14 @@ interface Props {
 export default function ProductOptions({ product }: Props) {
 	const [color, setColor] = useState(product.color_scheme[0])
 	const [size, setSize] = useState('S')
-	const [quantity, setQuantity] = useState(1)
 	const { addProductCart } = useCartContext()
+	const { quantity, setQuantity, handleChangeQuantity } = useQuantity()
 
 	const handleClickColor = (color: string) => {
 		setColor(color)
 	}
 	const handleClickSize = (size: string) => {
 		setSize(size)
-	}
-
-	const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const value = Number(e.target.value)
-
-		if (value >= 0) {
-			setQuantity(value)
-		}
 	}
 
 	const handleClickAddProductCart = () => {
@@ -92,26 +86,11 @@ export default function ProductOptions({ product }: Props) {
 			<div>
 				<p>{'Cantidad : '}</p>
 				<div className={styles.quantityContainer()}>
-					<button
-						type='button'
-						className={styles.button()}
-						onClick={() => setQuantity((prev) => (prev <= 1 ? 1 : prev - 1))}
-					>
-						-
-					</button>
-					<input
-						type='text'
-						className={styles.inputQuantity()}
-						onChange={handleChangeQuantity}
-						value={quantity}
+					<QuantityPicker
+						quantity={quantity}
+						setQuantity={setQuantity}
+						handleChangeQuantity={handleChangeQuantity}
 					/>
-					<button
-						type='button'
-						className={styles.button()}
-						onClick={() => setQuantity((prev) => prev + 1)}
-					>
-						+
-					</button>
 				</div>
 			</div>
 

@@ -8,7 +8,7 @@ const stylesSlots = tv({
 		priceContainer: 'flex items-baseline gap-2',
 		price: 'text-3xl font-bold mb-3 ',
 		currency: 'text-sm font-medium text-muted-foreground text-neutral-600',
-		description: '',
+		description: 'text-base',
 		borderTop: 'mt-5 border-t pt-5 flex flex-col gap-5',
 	},
 })

@@ -1,5 +1,4 @@
 'use client'
-import type { Session } from 'next-auth'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import Search from '../Search/Search'
@@ -12,10 +11,14 @@ import CartIcon from '@/icons/CartIcon'
 
 export default function Header() {
 	const [isHiddenMenu, setIsHiddenMenu] = useState(true)
-	const { cart } = useCartContext()
+	const { cart, setShowCartBar } = useCartContext()
 
 	const handleClickMenu = () => {
 		setIsHiddenMenu(!isHiddenMenu)
+	}
+
+	const handleClickCart = () => {
+		setShowCartBar(true)
 	}
 
 	return (
@@ -33,7 +36,11 @@ export default function Header() {
 					<div className={styles.navContainer()}>
 						<Link href='/search'>Tienda</Link>
 						<Link href='/search'>Contacto</Link>
-						<button type='button' className={styles.buttonCart()}>
+						<button
+							onClick={handleClickCart}
+							type='button'
+							className={styles.buttonCart()}
+						>
 							<CartIcon width={32} height={32} />
 							{cart?.length > 0 && <span>{cart.length}</span>}
 						</button>
