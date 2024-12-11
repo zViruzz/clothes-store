@@ -1,11 +1,11 @@
 'use client'
+import useQuantity from '@/hooks/useQuantity'
+import CloseIcon from '@/icons/CloseIcon'
+import CloseIconMin from '@/icons/CloseIconMin'
+import Image from 'next/image'
 import { useEffect } from 'react'
 import { useCartContext } from '../context/card.context'
-import { styles } from './CartBarStyles'
-import CloseIcon from '@/icons/CloseIcon'
-import Image from 'next/image'
 import QuantityPicker from '../QuantityPicker/QuantityPicker'
-import useQuantity from '@/hooks/useQuantity'
 import {
 	Select,
 	SelectContent,
@@ -13,19 +13,26 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '../ui/select'
-import CloseIconMin from '@/icons/CloseIconMin'
+import { styles } from './CartBarStyles'
 
 export default function CartBar() {
 	const { showCartBar, cart, setShowCartBar } = useCartContext()
 	const { quantity, setQuantity, handleChangeQuantity } = useQuantity()
 
 	useEffect(() => {
-		const body = document.querySelector('body')
-
-		if (body) {
-			body.style.overflow = 'hidden'
+		if (showCartBar) {
+			const body = document.querySelector('body')
+			if (body) {
+				body.style.overflow = 'hidden'
+			}
 		}
-	}, [])
+		return () => {
+			const body = document.querySelector('body')
+			if (body) {
+				body.style.overflow = ''
+			}
+		}
+	}, [showCartBar])
 
 	const handleChangeSelectSize = (value: string) => {}
 
@@ -53,7 +60,7 @@ export default function CartBar() {
 								<CloseIconMin width={25} height={25} />
 							</button>
 							<div className={styles.cartImage()}>
-								<Image src={item.url_images[0]} width={50} height={50} alt={item.name} />
+								<Image src={item.url_images[0]} width={70} height={70} alt={item.name} />
 							</div>
 							<div className={styles.cartEdit()}>
 								<div>

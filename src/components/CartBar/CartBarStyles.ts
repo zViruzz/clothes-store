@@ -3,7 +3,7 @@ import { tv } from 'tailwind-variants'
 const stylesSlots = tv({
 	slots: {
 		containerBar: 'w-full h-full z-40 absolute flex justify-end bg-black/40',
-		bar: 'h-dvh w-[40rem] flex flex-col top-0 right-0 sticky gap-4 p-5 md:px-[3%] bg-white',
+		bar: 'h-dvh w-[40rem] flex flex-col top-0 right-0 sticky gap-4 p-5 md:px-[3.5%] bg-white',
 		barHeader: 'flex justify-between w-full text-neutral-600 text-2xl',
 
 		cartContainer: 'flex flex-col gap-4',
