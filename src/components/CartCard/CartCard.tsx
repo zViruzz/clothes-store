@@ -3,6 +3,7 @@ import CloseIconMin from '@/icons/CloseIconMin'
 import Image from 'next/image'
 import type { CartProduct } from '../../../types'
 import QuantityPicker from '../QuantityPicker/QuantityPicker'
+import { useCartContext } from '../context/card.context'
 import {
 	Select,
 	SelectContent,
@@ -14,8 +15,33 @@ import { styles } from './CartCardStyles'
 
 interface Props extends CartProduct {}
 
-export default function CartCard({ name, price, title, size, url_images }: Props) {
+export default function CartCard({
+	id,
+	category,
+	color,
+	name,
+	price,
+	title,
+	size,
+	url_images,
+}: Props) {
 	const { quantity, setQuantity, handleChangeQuantity } = useQuantity()
+	const { removeProductFromCart } = useCartContext()
+
+	const handleClickRemove = () => {
+		const product: CartProduct = {
+			id,
+			category,
+			color,
+			name,
+			price,
+			title,
+			size,
+			url_images,
+			quantity,
+		}
+		removeProductFromCart(product)
+	}
 
 	const handleChangeSelectSize = (value: string) => {
 		setQuantity(Number(value))
@@ -23,7 +49,7 @@ export default function CartCard({ name, price, title, size, url_images }: Props
 
 	return (
 		<div className={styles.cart()}>
-			<button className={styles.deleteButton()} type='button'>
+			<button type='button' className={styles.deleteButton()} onClick={handleClickRemove}>
 				<CloseIconMin width={25} height={25} />
 			</button>
 			<div className={styles.cartImage()}>

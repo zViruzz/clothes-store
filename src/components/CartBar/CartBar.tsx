@@ -41,8 +41,9 @@ export default function CartBar() {
 					</button>
 				</div>
 				<div className={styles.cartContainer()}>
-					{cart.map((item) => (
-						<CartCard key={item.id} {...item} />
+					{cart.map((item, index) => (
+						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+						<CartCard key={index} {...item} />
 					))}
 				</div>
 				<div>
