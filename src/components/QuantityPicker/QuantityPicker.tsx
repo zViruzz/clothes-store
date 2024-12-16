@@ -2,6 +2,8 @@ import { styles } from './QuantityPickerStyles'
 
 interface Props {
 	handleChangeQuantity: (e: React.ChangeEvent<HTMLInputElement>) => void
+	handleClickIncrement: () => void
+	handleClickDecrement: () => void
 	setQuantity: React.Dispatch<React.SetStateAction<number>>
 	quantity: number
 }
@@ -9,14 +11,12 @@ export default function QuantityPicker({
 	setQuantity,
 	quantity,
 	handleChangeQuantity,
+	handleClickDecrement,
+	handleClickIncrement,
 }: Props) {
 	return (
 		<>
-			<button
-				type='button'
-				className={styles.button()}
-				onClick={() => setQuantity((prev) => (prev <= 1 ? 1 : prev - 1))}
-			>
+			<button type='button' className={styles.button()} onClick={handleClickDecrement}>
 				-
 			</button>
 			<input
@@ -25,11 +25,7 @@ export default function QuantityPicker({
 				onChange={handleChangeQuantity}
 				value={quantity}
 			/>
-			<button
-				type='button'
-				className={styles.button()}
-				onClick={() => setQuantity((prev) => prev + 1)}
-			>
+			<button type='button' className={styles.button()} onClick={handleClickIncrement}>
 				+
 			</button>
 		</>

@@ -1,7 +1,16 @@
 import { useState } from 'react'
 
-export default function useQuantity() {
-	const [quantity, setQuantity] = useState(1)
+export default function useQuantity(initial: number) {
+	const [quantityState, setQuantity] = useState(initial)
+
+	const handleClickIncrement = () => {
+		setQuantity((prev) => prev + 5)
+	}
+
+	const handleClickDecrement = () => {
+		if (quantityState <= 5) return
+		setQuantity((prev) => prev - 5)
+	}
 
 	const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = Number(e.target.value)
@@ -12,8 +21,10 @@ export default function useQuantity() {
 	}
 
 	return {
-		quantity,
+		quantityState,
 		setQuantity,
 		handleChangeQuantity,
+		handleClickIncrement,
+		handleClickDecrement,
 	}
 }

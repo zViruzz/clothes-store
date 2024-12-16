@@ -17,7 +17,13 @@ export default function ProductOptions({ product }: Props) {
 	const [color, setColor] = useState(product.color_scheme[0])
 	const [size, setSize] = useState('S')
 	const { addProductCart } = useCartContext()
-	const { quantity, setQuantity, handleChangeQuantity } = useQuantity()
+	const {
+		quantityState,
+		setQuantity,
+		handleChangeQuantity,
+		handleClickDecrement,
+		handleClickIncrement,
+	} = useQuantity(5)
 
 	const handleClickColor = (color: string) => {
 		setColor(color)
@@ -34,7 +40,7 @@ export default function ProductOptions({ product }: Props) {
 			category: product.category,
 			price: product.price,
 			url_images: product.url_images,
-			quantity,
+			quantity: quantityState,
 			color,
 			size,
 		})
@@ -87,9 +93,11 @@ export default function ProductOptions({ product }: Props) {
 				<p>{'Cantidad : '}</p>
 				<div className={styles.quantityContainer()}>
 					<QuantityPicker
-						quantity={quantity}
+						quantity={quantityState}
 						setQuantity={setQuantity}
 						handleChangeQuantity={handleChangeQuantity}
+						handleClickIncrement={handleClickIncrement}
+						handleClickDecrement={handleClickDecrement}
 					/>
 				</div>
 			</div>

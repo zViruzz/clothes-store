@@ -24,8 +24,15 @@ export default function CartCard({
 	title,
 	size,
 	url_images,
+	quantity,
 }: Props) {
-	const { quantity, setQuantity, handleChangeQuantity } = useQuantity()
+	const {
+		quantityState,
+		setQuantity,
+		handleChangeQuantity,
+		handleClickDecrement,
+		handleClickIncrement,
+	} = useQuantity(quantity)
 	const { removeProductFromCart } = useCartContext()
 
 	const handleClickRemove = () => {
@@ -63,8 +70,10 @@ export default function CartCard({
 				<div className={styles.quantityContainer()}>
 					<QuantityPicker
 						setQuantity={setQuantity}
-						quantity={quantity}
+						quantity={quantityState}
 						handleChangeQuantity={handleChangeQuantity}
+						handleClickDecrement={handleClickDecrement}
+						handleClickIncrement={handleClickIncrement}
 					/>
 				</div>
 				<div className={styles.selectContainer()}>
