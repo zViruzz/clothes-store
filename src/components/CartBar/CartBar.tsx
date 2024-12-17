@@ -4,9 +4,11 @@ import { useEffect } from 'react'
 import CartCard from '../CartCard/CartCard'
 import { useCartContext } from '../context/card.context'
 import { styles } from './CartBarStyles'
+import { useCart } from '@/stores/cart'
 
 export default function CartBar() {
-	const { showCartBar, cart, setShowCartBar } = useCartContext()
+	const { showCartBar, setShowCartBar } = useCartContext()
+	const cart = useCart((state) => state.cart)
 
 	useEffect(() => {
 		if (showCartBar) {

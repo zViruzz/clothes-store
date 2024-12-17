@@ -12,6 +12,7 @@ import {
 	SelectValue,
 } from '../ui/select'
 import { styles } from './CartCardStyles'
+import { useCart } from '@/stores/cart'
 
 interface Props extends CartProduct {}
 
@@ -33,7 +34,7 @@ export default function CartCard({
 		handleClickDecrement,
 		handleClickIncrement,
 	} = useQuantity(quantity)
-	const { removeProductFromCart } = useCartContext()
+	const removeProductFromCart = useCart((state) => state.removeProductFromCart)
 
 	const handleClickRemove = () => {
 		const product: CartProduct = {

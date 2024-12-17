@@ -8,10 +8,12 @@ import MenuIcon from '@/icons/MenuIcon'
 import { cn } from '@/libs/utils'
 import { useCartContext } from '../context/card.context'
 import CartIcon from '@/icons/CartIcon'
+import { useCart } from '@/stores/cart'
 
 export default function Header() {
 	const [isHiddenMenu, setIsHiddenMenu] = useState(true)
-	const { cart, setShowCartBar } = useCartContext()
+	const { setShowCartBar } = useCartContext()
+	const cart = useCart((state) => state.cart)
 
 	const handleClickMenu = () => {
 		setIsHiddenMenu(!isHiddenMenu)

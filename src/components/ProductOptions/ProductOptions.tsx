@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { cn } from '@/libs/utils'
 import QuantityPicker from '../QuantityPicker/QuantityPicker'
 import useQuantity from '@/hooks/useQuantity'
+import { useCart } from '@/stores/cart'
 
 interface Props {
 	product: Product
@@ -16,7 +17,8 @@ interface Props {
 export default function ProductOptions({ product }: Props) {
 	const [color, setColor] = useState(product.color_scheme[0])
 	const [size, setSize] = useState('S')
-	const { addProductCart } = useCartContext()
+	const addProductCart = useCart((state) => state.addProductCart)
+
 	const {
 		quantityState,
 		setQuantity,
