@@ -1,19 +1,21 @@
 import { styles } from './QuantityPickerStyles'
 
 interface Props {
-	handleChangeQuantity: (e: React.ChangeEvent<HTMLInputElement>) => void
+	controlQuantity: (value: number) => void
 	handleClickIncrement: () => void
 	handleClickDecrement: () => void
-	setQuantity: React.Dispatch<React.SetStateAction<number>>
 	quantity: number
 }
 export default function QuantityPicker({
-	setQuantity,
 	quantity,
-	handleChangeQuantity,
+	controlQuantity,
 	handleClickDecrement,
 	handleClickIncrement,
 }: Props) {
+	const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
+		controlQuantity(Number(e.target.value))
+	}
+
 	return (
 		<>
 			<button type='button' className={styles.button()} onClick={handleClickDecrement}>

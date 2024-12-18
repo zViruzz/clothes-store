@@ -1,17 +1,35 @@
 import { create } from 'zustand'
 import type { CartProduct } from '../../types'
-import { persist, createJSONStorage } from 'zustand/middleware'
+import { persist } from 'zustand/middleware'
 
 interface BearState {
 	cart: CartProduct[]
 	addProductCart: (product: CartProduct) => void
 	removeProductFromCart: (product: CartProduct) => void
+	changeQuantity: (id: number, value: number) => void
 }
 
 export const useCart = create(
 	persist<BearState>(
 		(set) => ({
 			cart: [],
+			changeQuantity: (id: number, value: number) =>
+				set((state) => {
+					const updateProduct = state.cart.map((item) => {
+						if (item.id === id) {
+							return {
+								...item,
+								quantity: value,
+							}
+						}
+						return item
+					})
+
+					return {
+						cart: updateProduct,
+					}
+				}),
+
 			addProductCart: (product: CartProduct) =>
 				set((state) => {
 					const isProductInCart = state.cart.some(

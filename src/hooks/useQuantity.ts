@@ -1,30 +1,30 @@
-import { useState } from 'react'
+import { useCart } from '@/stores/cart'
+import type { CartProduct } from '../../types'
 
-export default function useQuantity(initial: number) {
-	const [quantityState, setQuantity] = useState(initial)
+export default function useQuantity(product: CartProduct) {
+	const changeQuantity = useCart((state) => state.changeQuantity)
 
 	const handleClickIncrement = () => {
-		setQuantity((prev) => prev + 5)
+		const value = product.quantity + 5
+		changeQuantity(product.id, value)
 	}
 
 	const handleClickDecrement = () => {
-		if (quantityState <= 5) return
-		setQuantity((prev) => prev - 5)
+		if (product.quantity <= 5) return
+
+		const value = product.quantity - 5
+		changeQuantity(product.id, value)
 	}
 
-	const handleChangeQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const value = Number(e.target.value)
-
+	const controlQuantity = (value: number) => {
 		if (value >= 0) {
-			setQuantity(value)
+			changeQuantity(product.id, value)
 		}
 	}
 
 	return {
-		quantityState,
-		setQuantity,
-		handleChangeQuantity,
 		handleClickIncrement,
 		handleClickDecrement,
+		controlQuantity,
 	}
 }

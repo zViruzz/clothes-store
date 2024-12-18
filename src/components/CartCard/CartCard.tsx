@@ -15,44 +15,17 @@ import { useCart } from '@/stores/cart'
 
 interface Props extends CartProduct {}
 
-export default function CartCard({
-	id,
-	category,
-	color,
-	name,
-	price,
-	title,
-	size,
-	url_images,
-	quantity,
-}: Props) {
-	const {
-		quantityState,
-		setQuantity,
-		handleChangeQuantity,
-		handleClickDecrement,
-		handleClickIncrement,
-	} = useQuantity(quantity)
+export default function CartCard(product: Props) {
 	const removeProductFromCart = useCart((state) => state.removeProductFromCart)
 
+	const { controlQuantity, handleClickDecrement, handleClickIncrement } =
+		useQuantity(product)
+
 	const handleClickRemove = () => {
-		const product: CartProduct = {
-			id,
-			category,
-			color,
-			name,
-			price,
-			title,
-			size,
-			url_images,
-			quantity,
-		}
 		removeProductFromCart(product)
 	}
 
-	const handleChangeSelectSize = (value: string) => {
-		setQuantity(Number(value))
-	}
+	const handleChangeSelectSize = (value: string) => {}
 
 	return (
 		<div className={styles.cart()}>
@@ -60,18 +33,17 @@ export default function CartCard({
 				<CloseIconMin width={25} height={25} />
 			</button>
 			<div className={styles.cartImage()}>
-				<Image src={url_images[0]} width={70} height={70} alt={name} />
+				<Image src={product.url_images[0]} width={70} height={70} alt={product.name} />
 			</div>
 			<div className={styles.cartEdit()}>
 				<div>
-					<span className={styles.title()}>{title}</span>
-					<span className={styles.price()}>${price}</span>
+					<span className={styles.title()}>{product.title}</span>
+					<span className={styles.price()}>${product.price}</span>
 				</div>
 				<div className={styles.quantityContainer()}>
 					<QuantityPicker
-						setQuantity={setQuantity}
-						quantity={quantityState}
-						handleChangeQuantity={handleChangeQuantity}
+						quantity={product.quantity}
+						controlQuantity={controlQuantity}
 						handleClickDecrement={handleClickDecrement}
 						handleClickIncrement={handleClickIncrement}
 					/>
@@ -90,7 +62,7 @@ export default function CartCard({
 					</Select>
 					<Select onValueChange={handleChangeSelectSize}>
 						<SelectTrigger className='w-[120px]'>
-							<SelectValue placeholder={`Size ${size}`} />
+							<SelectValue placeholder={`Size ${product.size}`} />
 						</SelectTrigger>
 						<SelectContent>
 							<SelectItem value='1'>1</SelectItem>
