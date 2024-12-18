@@ -8,10 +8,7 @@ export interface AppProps {
 	} & Record<string, unknown>
 }
 
-export default function ProviderSession({
-	Component,
-	pageProps,
-}: AppProps) {
+export default function ProviderSession({ Component, pageProps }: AppProps) {
 	return (
 		<SessionProvider session={pageProps.session}>
 			<Component {...pageProps} />

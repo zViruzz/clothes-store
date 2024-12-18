@@ -1,10 +1,10 @@
 'use client'
+import { useCartContext } from '@/context/card.context'
 import CloseIcon from '@/icons/CloseIcon'
+import { useCart } from '@/stores/cart'
 import { useEffect } from 'react'
 import CartCard from '../CartCard/CartCard'
-import { useCartContext } from '@/context/card.context'
 import { styles } from './CartBarStyles'
-import { useCart } from '@/stores/cart'
 
 export default function CartBar() {
 	const { showCartBar, setShowCartBar } = useCartContext()

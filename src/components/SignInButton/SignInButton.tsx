@@ -1,6 +1,7 @@
 'use client'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+
 export default function SignInButton() {
 	const router = useRouter()
 	const handleClick = async () => {

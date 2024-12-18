@@ -1,12 +1,12 @@
 'use client'
-import { colorTranslator } from '@/utils/colorTranslator'
-import type { Product } from '../../../types'
-import { styles } from './ProductOptionsStyles'
 import TruckIcon from '@/icons/TruckIcon'
-import { useState } from 'react'
 import { cn } from '@/libs/utils'
-import QuantityPicker from '../QuantityPicker/QuantityPicker'
 import { useCart } from '@/stores/cart'
+import { colorTranslator } from '@/utils/colorTranslator'
+import { useState } from 'react'
+import type { Product } from '../../../types'
+import QuantityPicker from '../QuantityPicker/QuantityPicker'
+import { styles } from './ProductOptionsStyles'
 
 interface Props {
 	product: Product

@@ -1,6 +1,5 @@
 'use client'
-import { createContext, useContext } from 'react'
-import { type ReactNode, useState } from 'react'
+import { type ReactNode, createContext, useContext, useState } from 'react'
 
 interface CartProps {
 	children: ReactNode

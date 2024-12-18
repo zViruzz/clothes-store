@@ -1,10 +1,10 @@
 'use client'
+import { isLoadingImage } from '@/app/styles/variants'
 import { cn } from '@/libs/utils'
 import Image from 'next/image'
 import Link from 'next/link'
-import { styles } from './CardStyles'
 import { useState } from 'react'
-import { isLoadingImage } from '@/app/styles/variants'
+import { styles } from './CardStyles'
 
 interface Props {
 	id: number

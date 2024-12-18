@@ -1,4 +1,3 @@
-import React from 'react'
 import type { Product } from '../../../types'
 import Card from '../Card/Card'
 

@@ -1,10 +1,10 @@
 'use client'
-import Image from 'next/image'
-import React, { useState } from 'react'
-import type { Product } from '../../../types'
-import { styles } from './ImagesPreviewStyles'
 import { isLoadingImage } from '@/app/styles/variants'
 import { cn } from '@/libs/utils'
+import Image from 'next/image'
+import { useState } from 'react'
+import type { Product } from '../../../types'
+import { styles } from './ImagesPreviewStyles'
 
 export default function ImagesPreview({ product }: { product: Product }) {
 	const [url, setUrl] = useState(product.url_images[0])
