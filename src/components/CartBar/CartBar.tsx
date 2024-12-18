@@ -2,7 +2,7 @@
 import CloseIcon from '@/icons/CloseIcon'
 import { useEffect } from 'react'
 import CartCard from '../CartCard/CartCard'
-import { useCartContext } from '../context/card.context'
+import { useCartContext } from '@/context/card.context'
 import { styles } from './CartBarStyles'
 import { useCart } from '@/stores/cart'
 
