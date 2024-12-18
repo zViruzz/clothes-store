@@ -33,7 +33,7 @@ export default function ProductOptions({ product }: Props) {
 			category: product.category,
 			price: product.price,
 			url_images: product.url_images,
-			quantity: 5,
+			quantity,
 			color,
 			size,
 		})
