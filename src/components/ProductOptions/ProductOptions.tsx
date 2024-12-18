@@ -6,7 +6,6 @@ import TruckIcon from '@/icons/TruckIcon'
 import { useState } from 'react'
 import { cn } from '@/libs/utils'
 import QuantityPicker from '../QuantityPicker/QuantityPicker'
-import useQuantity from '@/hooks/useQuantity'
 import { useCart } from '@/stores/cart'
 
 interface Props {
@@ -16,9 +15,8 @@ interface Props {
 export default function ProductOptions({ product }: Props) {
 	const [color, setColor] = useState(product.color_scheme[0])
 	const [size, setSize] = useState('S')
+	const [quantity, setQuantity] = useState(5)
 	const addProductCart = useCart((state) => state.addProductCart)
-
-	const { controlQuantity, handleClickDecrement, handleClickIncrement } = useQuantity(5)
 
 	const handleClickColor = (color: string) => {
 		setColor(color)
@@ -39,6 +37,20 @@ export default function ProductOptions({ product }: Props) {
 			color,
 			size,
 		})
+	}
+	const controlQuantity = (value: number) => {
+		if (value >= 0) {
+			setQuantity(value)
+		}
+	}
+
+	const handleClickIncrement = () => {
+		setQuantity(quantity + 5)
+	}
+
+	const handleClickDecrement = () => {
+		if (quantity <= 5) return
+		setQuantity(quantity - 5)
 	}
 
 	return (
@@ -88,7 +100,8 @@ export default function ProductOptions({ product }: Props) {
 				<p>{'Cantidad : '}</p>
 				<div className={styles.quantityContainer()}>
 					<QuantityPicker
-						quantity={5}
+						quantity={quantity}
+						controlQuantity={controlQuantity}
 						handleClickIncrement={handleClickIncrement}
 						handleClickDecrement={handleClickDecrement}
 					/>
