@@ -1,6 +1,6 @@
 import Background from '@/components/Background/Background'
 import CartBar from '@/components/CartBar/CartBar'
-import { CartProvider } from '@/components/context/card.context'
+import { CartProvider } from '@/context/card.context'
 import Header from '@/components/Header/Header'
 import type { Metadata } from 'next'
 import { Quicksand } from 'next/font/google'

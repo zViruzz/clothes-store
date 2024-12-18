@@ -6,7 +6,7 @@ import { styles } from './HeaderStyles'
 import CloseIcon from '@/icons/CloseIcon'
 import MenuIcon from '@/icons/MenuIcon'
 import { cn } from '@/libs/utils'
-import { useCartContext } from '../context/card.context'
+import { useCartContext } from '@/context/card.context'
 import CartIcon from '@/icons/CartIcon'
 import { useCart } from '@/stores/cart'
 

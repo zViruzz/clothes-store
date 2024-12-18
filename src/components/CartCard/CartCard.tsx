@@ -3,7 +3,6 @@ import CloseIconMin from '@/icons/CloseIconMin'
 import Image from 'next/image'
 import type { CartProduct } from '../../../types'
 import QuantityPicker from '../QuantityPicker/QuantityPicker'
-import { useCartContext } from '../context/card.context'
 import {
 	Select,
 	SelectContent,
