@@ -14,7 +14,7 @@ interface Props {
 
 export default function ProductOptions({ product }: Props) {
 	const [color, setColor] = useState(product.color_scheme[0])
-	const [size, setSize] = useState('S')
+	const [size, setSize] = useState('1')
 	const [quantity, setQuantity] = useState(5)
 	const addProductCart = useCart((state) => state.addProductCart)
 
@@ -72,27 +72,16 @@ export default function ProductOptions({ product }: Props) {
 			<div>
 				<p>Talla : </p>
 				<div className={styles.sizeContainer()}>
-					<button
-						type='button'
-						onClick={() => handleClickSize('S')}
-						className={styles.button()}
-					>
-						S
-					</button>
-					<button
-						type='button'
-						onClick={() => handleClickSize('M')}
-						className={styles.button()}
-					>
-						M
-					</button>
-					<button
-						type='button'
-						onClick={() => handleClickSize('XS')}
-						className={styles.button()}
-					>
-						XS
-					</button>
+					{product.sizes.map((size) => (
+						<button
+							type='button'
+							className={styles.button()}
+							key={size}
+							onClick={() => handleClickSize(size)}
+						>
+							{size}
+						</button>
+					))}
 				</div>
 			</div>
 

@@ -1,7 +1,7 @@
 import useQuantity from '@/hooks/useQuantity'
 import CloseIconMin from '@/icons/CloseIconMin'
 import Image from 'next/image'
-import type { CartProduct } from '../../../types'
+import type { CartProduct, Product } from '../../../types'
 import QuantityPicker from '../QuantityPicker/QuantityPicker'
 import {
 	Select,
@@ -12,14 +12,29 @@ import {
 } from '../ui/select'
 import { styles } from './CartCardStyles'
 import { useCart } from '@/stores/cart'
+import { useEffect, useState } from 'react'
+import { getProductAction } from '@/action/getProductAction'
 
 interface Props extends CartProduct {}
 
 export default function CartCard(product: Props) {
 	const removeProductFromCart = useCart((state) => state.removeProductFromCart)
-
 	const { controlQuantity, handleClickDecrement, handleClickIncrement } =
 		useQuantity(product)
+	const [productData, setProductData] = useState<Product>()
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const data = await getProductAction(product.id)
+				if (data instanceof Error) return
+				setProductData(data)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+		fetchData()
+	}, [product])
 
 	const handleClickRemove = () => {
 		removeProductFromCart(product)
@@ -62,13 +77,14 @@ export default function CartCard(product: Props) {
 					</Select>
 					<Select onValueChange={handleChangeSelectSize}>
 						<SelectTrigger className='w-[120px]'>
-							<SelectValue placeholder={`Size ${product.size}`} />
+							<SelectValue placeholder={`Talla ${product.size}`} />
 						</SelectTrigger>
 						<SelectContent>
-							<SelectItem value='1'>1</SelectItem>
-							<SelectItem value='2'>2</SelectItem>
-							<SelectItem value='3'>3</SelectItem>
-							<SelectItem value='4'>4</SelectItem>
+							{productData?.sizes.map((size) => (
+								<SelectItem key={size} value={size}>
+									Talla {size}
+								</SelectItem>
+							))}
 						</SelectContent>
 					</Select>
 				</div>

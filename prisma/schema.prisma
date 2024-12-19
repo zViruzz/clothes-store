@@ -19,11 +19,11 @@ model Product {
   id           Int      @id @default(autoincrement())
   name         String   @unique @db.VarChar(255)
   title        String   @db.VarChar(255)
-  description  String   @db.Text
   category     String
+  description  String   @db.Text
   price        Float    @default(0)
-  color_scheme String[]
   sizes        String[]
+  color_scheme String[]
   url_images   String[]
   createdAt    DateTime @default(now())
 }
