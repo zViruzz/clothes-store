@@ -6,20 +6,20 @@ export default function useQuantity(product: CartProduct) {
 
 	const handleClickIncrement = () => {
 		const value = product.quantity + 5
-		changeQuantity(product.id, value)
+		changeQuantity(product, value)
 	}
 
 	const handleClickDecrement = () => {
 		if (product.quantity <= 5) return
 
 		const value = product.quantity - 5
-		changeQuantity(product.id, value)
+		changeQuantity(product, value)
 	}
 
 	const controlQuantity = (value: number) => {
 		console.warn('DEBUGPRINT[33]: useQuantity.ts:19: value=', value)
 		if (value >= 0) {
-			changeQuantity(product.id, value)
+			changeQuantity(product, value)
 		}
 	}
 
