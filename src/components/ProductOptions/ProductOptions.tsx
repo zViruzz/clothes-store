@@ -14,7 +14,7 @@ interface Props {
 
 export default function ProductOptions({ product }: Props) {
 	const [color, setColor] = useState(product.color_scheme[0])
-	const [size, setSize] = useState('1')
+	const [size, setSize] = useState(product.sizes[0])
 	const [quantity, setQuantity] = useState(5)
 	const addProductCart = useCart((state) => state.addProductCart)
 
@@ -28,6 +28,7 @@ export default function ProductOptions({ product }: Props) {
 	const handleClickAddProductCart = () => {
 		addProductCart({
 			id: product.id,
+			cartId: window.crypto.randomUUID(),
 			name: product.name,
 			title: product.title,
 			category: product.category,

@@ -9,6 +9,7 @@ import { styles } from './CartBarStyles'
 export default function CartBar() {
 	const { showCartBar, setShowCartBar } = useCartContext()
 	const cart = useCart((state) => state.cart)
+	console.warn('DEBUGPRINT[44]: CartBar.tsx:11: cart=', cart)
 
 	useEffect(() => {
 		if (showCartBar) {

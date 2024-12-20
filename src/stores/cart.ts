@@ -17,11 +17,7 @@ export const useCart = create(
 			changeSizes: (product: CartProduct, value: string) =>
 				set((state) => {
 					const updateProduct = state.cart.map((item) => {
-						if (
-							item.id === product.id &&
-							item.size === product.size &&
-							item.color === product.color
-						) {
+						if (item.cartId === product.cartId) {
 							return {
 								...item,
 								size: value,
@@ -36,11 +32,7 @@ export const useCart = create(
 			changeQuantity: (product: CartProduct, value: number) =>
 				set((state) => {
 					const updateProduct = state.cart.map((item) => {
-						if (
-							item.id === product.id &&
-							item.size === product.size &&
-							item.color === product.color
-						) {
+						if (item.cartId === product.cartId) {
 							return {
 								...item,
 								quantity: value,
@@ -62,7 +54,6 @@ export const useCart = create(
 							item.size === product.size &&
 							item.color === product.color,
 					)
-
 					if (isProductInCart) {
 						const updatedCart = state.cart.map((item) => {
 							if (
@@ -90,10 +81,7 @@ export const useCart = create(
 			removeProductFromCart: (product: CartProduct) =>
 				set((state) => {
 					const updatedCard = state.cart.filter((item) => {
-						if (
-							(item.id !== product.id && item.color !== product.color) ||
-							item.size !== product.size
-						) {
+						if (item.cartId !== product.cartId) {
 							return true
 						}
 					})
