@@ -6,6 +6,7 @@ interface BearState {
 	cart: CartProduct[]
 	addProductCart: (product: CartProduct) => void
 	removeProductFromCart: (product: CartProduct) => void
+	changeSizes: (product: CartProduct, value: string) => void
 	changeQuantity: (product: CartProduct, value: number) => void
 }
 
@@ -13,6 +14,25 @@ export const useCart = create(
 	persist<BearState>(
 		(set) => ({
 			cart: [],
+			changeSizes: (product: CartProduct, value: string) =>
+				set((state) => {
+					const updateProduct = state.cart.map((item) => {
+						if (
+							item.id === product.id &&
+							item.size === product.size &&
+							item.color === product.color
+						) {
+							return {
+								...item,
+								size: value,
+							}
+						}
+						return item
+					})
+					return {
+						cart: updateProduct,
+					}
+				}),
 			changeQuantity: (product: CartProduct, value: number) =>
 				set((state) => {
 					const updateProduct = state.cart.map((item) => {

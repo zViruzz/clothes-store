@@ -19,6 +19,7 @@ interface Props extends CartProduct {}
 
 export default function CartCard(product: Props) {
 	const removeProductFromCart = useCart((state) => state.removeProductFromCart)
+	const changeSizes = useCart((state) => state.changeSizes)
 	const { controlQuantity, handleClickDecrement, handleClickIncrement } =
 		useQuantity(product)
 	const [productData, setProductData] = useState<Product>()
@@ -40,7 +41,9 @@ export default function CartCard(product: Props) {
 		removeProductFromCart(product)
 	}
 
-	const handleChangeSelectSize = (value: string) => {}
+	const handleChangeSelectSize = (value: string) => {
+		changeSizes(product, value)
+	}
 
 	return (
 		<div className={styles.cart()}>
