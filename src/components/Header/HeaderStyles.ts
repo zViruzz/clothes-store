@@ -20,7 +20,7 @@ const stylesSlots = tv({
 })
 
 export const menuMobile = tv({
-	base: 'flex backdrop-opacity-80 md:backdrop-opacity-50 bg-white/50 md:bg-white/20 backdrop-blur-xl absolute z-30 w-full h-screen  text-black px-5 pt-5 gap-7 flex-col md:hidden transition-all',
+	base: 'flex backdrop-opacity-80 md:backdrop-opacity-50 bg-white/50 md:bg-white/20 backdrop-blur-xl absolute z-30 w-full h-screen text-black px-5 pt-5 gap-7 flex-col md:hidden transition-all',
 	variants: {
 		hidden: {
 			true: 'invisible opacity-0',

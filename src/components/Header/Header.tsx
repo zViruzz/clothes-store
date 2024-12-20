@@ -39,9 +39,9 @@ export default function Header() {
 						<Link href='/search'>Tienda</Link>
 						<Link href='/search'>Contacto</Link>
 						<button
-							onClick={handleClickCart}
 							type='button'
 							className={styles.buttonCart()}
+							onClick={handleClickCart}
 						>
 							<CartIcon width={32} height={32} />
 							{cart?.length > 0 && <span>{cart.length}</span>}
@@ -49,7 +49,11 @@ export default function Header() {
 					</div>
 
 					<div className={styles.buttonContainer()}>
-						<button type='button' className={styles.buttonCart()}>
+						<button
+							type='button'
+							className={styles.buttonCart()}
+							onClick={handleClickCart}
+						>
 							<CartIcon width={34} height={34} />
 							{cart?.length > 0 && <span>{cart.length}</span>}
 						</button>
