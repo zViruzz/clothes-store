@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default async function SlugPage({ params }: Props) {
-	const { id, slug } = await params
+	const { id } = await params
 	const product = await getProductById(Number(id))
 
 	if (product instanceof Error) {
