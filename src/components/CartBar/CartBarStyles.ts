@@ -9,6 +9,11 @@ const stylesSlots = tv({
 		cartContainer: 'flex flex-col gap-4 overflow-auto',
 		orderButton:
 			'bg-[#FFA2CF] hover:bg-[#FF8EC5] active:bg-[#FF82BE] py-3 mt-6 w-full rounded-full',
+
+		closeButton:
+			'bg-[#FFA2CF] hover:bg-[#FF8EC5] active:bg-[#FF82BE] py-3 mt-6 w-full rounded-full',
+		emptyCart:
+			'flex flex-col gap-4 items-center justify-center text-neutral-500 text-2xl',
 	},
 })
 

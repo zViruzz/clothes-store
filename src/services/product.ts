@@ -15,16 +15,6 @@ export const getProduct = async ({ query }: getProductProps): Promise<Product[]>
 	return newProducts
 }
 
-export const getProductByColor = async ({
-	color,
-}: { color: string }): Promise<Product[]> => {
-	const products = await prisma.product.findMany()
-	const newProducts = products.filter((product) => {
-		return product.color_scheme.some((item) => item === color)
-	})
-	return newProducts
-}
-
 export const getProductById = async (id: number): Promise<Product | Error> => {
 	try {
 		const products = await prisma.product.findMany()

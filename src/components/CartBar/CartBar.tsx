@@ -1,5 +1,6 @@
 'use client'
 import { useCartContext } from '@/context/card.context'
+import CartIcon from '@/icons/CartIcon'
 import CloseIcon from '@/icons/CloseIcon'
 import { useCart } from '@/stores/cart'
 import { useEffect } from 'react'
@@ -43,15 +44,32 @@ export default function CartBar() {
 					</button>
 				</div>
 				<div className={styles.cartContainer()}>
-					{cart.map((item, index) => (
-						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-						<CartCard key={index} {...item} />
-					))}
+					{cart.length > 0 ? (
+						cart.map((item, index) => (
+							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+							<CartCard key={index} {...item} />
+						))
+					) : (
+						<div className={styles.emptyCart()}>
+							<CartIcon width={98} height={98} />
+							<p>No hay productos en el carrito</p>
+						</div>
+					)}
 				</div>
 				<div>
-					<button className={styles.orderButton()} type='button'>
-						Hacer pedido
-					</button>
+					{cart.length > 0 ? (
+						<button className={styles.orderButton()} type='button'>
+							Hacer pedido
+						</button>
+					) : (
+						<button
+							type='button'
+							className={styles.closeButton()}
+							onClick={handleClickCloseBar}
+						>
+							Close
+						</button>
+					)}
 				</div>
 			</div>
 		</div>

@@ -2,7 +2,6 @@ import Footer from '@/components/Footer'
 import Link from 'next/link'
 import { styles } from './styles'
 import Collections from '@/components/layout/search/Collections'
-import FilterList from '@/components/layout/search/FilterList'
 
 export default function LayoutSearch({ children }: { children: React.ReactNode }) {
 	return (
@@ -35,29 +34,6 @@ export default function LayoutSearch({ children }: { children: React.ReactNode }
 				</div>
 
 				<section className={styles.sectionWrapper()}>{children}</section>
-
-				<div className={styles.filterNav()}>
-					<div className={styles.selectContainer()}>
-						<FilterList />
-					</div>
-					<nav className={styles.navContainer()}>
-						<p className={styles.navTitle()}>Filtrar</p>
-						<ul>
-							<li>
-								<Link href='/search?color=pink'>Rosa</Link>
-							</li>
-							<li>
-								<Link href='/search?color=blue'>Azul</Link>
-							</li>
-							<li>
-								<Link href='/search?color=white'>Blanco</Link>
-							</li>
-							<li>
-								<Link href='/search?color=yellow'>Amarillo</Link>
-							</li>
-						</ul>
-					</nav>
-				</div>
 			</div>
 			<Footer />
 		</>

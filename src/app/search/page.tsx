@@ -1,6 +1,6 @@
 import GridView from '@/components/GridView/GridView'
 import ProductGridItem from '@/components/ProductGridItem/ProductGridItem'
-import { getProduct, getProductByColor } from '@/services/product'
+import { getProduct } from '@/services/product'
 import { styles } from './styles'
 
 interface Props {
@@ -10,11 +10,8 @@ interface Props {
 }
 
 export default async function pageSearch({ searchParams }: Props) {
-	const { q, color } = await searchParams
-	const products =
-		color === undefined
-			? await getProduct({ query: q })
-			: await getProductByColor({ color })
+	const { q } = await searchParams
+	const products = await getProduct({ query: q })
 
 	return (
 		<>
