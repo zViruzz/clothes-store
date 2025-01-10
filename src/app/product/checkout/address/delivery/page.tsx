@@ -3,6 +3,7 @@ import { Input } from '@/components/ui/input'
 import { styles } from './styles'
 import { useRouter } from 'next/navigation'
 import type { FormEvent } from 'react'
+import { stylesMain } from '../../styles'
 
 export default function DeliveryPage() {
 	const router = useRouter()
@@ -47,12 +48,16 @@ export default function DeliveryPage() {
 					<Input id='name' placeholder='Ingresa tu codigo postal' />
 				</div>
 
-				<div className={styles.containerButton()}>
-					<button type='button' className={styles.button()} onClick={handleCLickBack}>
+				<div className={stylesMain.containerButtonsStep()}>
+					<button
+						type='button'
+						className={stylesMain.buttonStep()}
+						onClick={handleCLickBack}
+					>
 						Volver
 					</button>
 
-					<button type='submit' className={styles.button()}>
+					<button type='submit' className={stylesMain.buttonStep()}>
 						Continuar
 					</button>
 				</div>

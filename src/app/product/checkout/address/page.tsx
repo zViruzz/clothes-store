@@ -1,3 +1,4 @@
+'use client'
 import HomeIcon from '@/icons/HomeIcon'
 import ShopIcon from '@/icons/ShopIcon'
 import { cartSelect } from '../styles'
@@ -17,11 +18,7 @@ export default function AddressPage() {
 					<p>Recordá enviar tu comprobante para que procesemos tu pago.</p>
 				</Link>
 
-				<Link
-					href='/product/checkout/address/pickup'
-					className={cartSelect()}
-					type='button'
-				>
+				<Link href='/product/checkout/address/pickup' className={cartSelect()}>
 					<div>
 						<ShopIcon />
 						<h4>Retiro por sucursal</h4>

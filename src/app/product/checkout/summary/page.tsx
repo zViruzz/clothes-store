@@ -2,6 +2,7 @@
 import { cn } from '@/libs/utils'
 import { styles } from './styles'
 import { useRouter } from 'next/navigation'
+import { stylesMain } from '../styles'
 
 export default function SummeryPage() {
 	const router = useRouter()
@@ -30,14 +31,18 @@ export default function SummeryPage() {
 					</div>
 				</div>
 
-				<div className={styles.containerButton()}>
-					<button type='button' className={styles.button()} onClick={handleCLickBack}>
+				<div className={stylesMain.containerButtonsStep()}>
+					<button
+						type='button'
+						className={stylesMain.buttonStep()}
+						onClick={handleCLickBack}
+					>
 						Volver
 					</button>
 
 					<button
 						type='submit'
-						className={cn(styles.button(), styles.buttonPay())}
+						className={cn(stylesMain.buttonStep(), styles.buttonPay())}
 						onClick={handleCLickGo}
 					>
 						Confirmar pago

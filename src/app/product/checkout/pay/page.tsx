@@ -1,6 +1,6 @@
 'use client'
 import MoneyIcon from '@/icons/MoneyIcon'
-import { buttonBack, cartSelect } from '../styles'
+import { stylesMain } from '../styles'
 import { styles } from './styles'
 import { useRouter } from 'next/navigation'
 
@@ -18,7 +18,11 @@ export default function PayPage() {
 		<div>
 			<h2 className={styles.title()}>Metodo de pago</h2>
 			<div className={styles.containerMethods()}>
-				<button className={cartSelect()} type='button' onClick={handleClickTransfer}>
+				<button
+					className={stylesMain.cardSelectMethod()}
+					type='button'
+					onClick={handleClickTransfer}
+				>
 					<div>
 						<MoneyIcon width={25} height={25} />
 						<h4>Tranferencia</h4>
@@ -31,7 +35,11 @@ export default function PayPage() {
 				hábiles).
 			</p>
 			<div>
-				<button type='button' className={buttonBack()} onClick={handleClickBack}>
+				<button
+					type='button'
+					className={stylesMain.buttonStep()}
+					onClick={handleClickBack}
+				>
 					Volver
 				</button>
 			</div>
