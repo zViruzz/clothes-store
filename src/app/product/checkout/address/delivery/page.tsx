@@ -1,16 +1,24 @@
 'use client'
 import { Input } from '@/components/ui/input'
 import { styles } from './styles'
+import { useRouter } from 'next/navigation'
+import type { FormEvent } from 'react'
 
 export default function DeliveryPage() {
+	const router = useRouter()
+
 	const handleCLickBack = () => {}
-	const handleCLickGo = () => {}
+
+	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
+		router.push('/product/checkout/pay')
+	}
 
 	return (
 		<div className={styles.container()}>
 			<h2>Informacion de entrega</h2>
 
-			<form className={styles.form()}>
+			<form className={styles.form()} onSubmit={handleSubmit}>
 				<div>
 					<label htmlFor='name'>Nombre</label>
 					<Input id='name' placeholder='Ingresa tu nombre' />
@@ -44,7 +52,7 @@ export default function DeliveryPage() {
 						Volver
 					</button>
 
-					<button type='submit' className={styles.button()} onClick={handleCLickGo}>
+					<button type='submit' className={styles.button()}>
 						Continuar
 					</button>
 				</div>

@@ -1,9 +1,13 @@
 'use client'
 import { cn } from '@/libs/utils'
 import { styles } from './styles'
+import { useRouter } from 'next/navigation'
 
 export default function SummeryPage() {
-	const handleCLickBack = () => {}
+	const router = useRouter()
+	const handleCLickBack = () => {
+		router.push('/product/checkout/pay')
+	}
 	const handleCLickGo = () => {}
 	return (
 		<div>

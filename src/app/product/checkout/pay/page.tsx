@@ -1,13 +1,24 @@
+'use client'
 import MoneyIcon from '@/icons/MoneyIcon'
-import { cartSelect } from '../styles'
+import { buttonBack, cartSelect } from '../styles'
 import { styles } from './styles'
+import { useRouter } from 'next/navigation'
 
 export default function PayPage() {
+	const router = useRouter()
+	const handleClickTransfer = () => {
+		router.push('/product/checkout/summary')
+	}
+
+	const handleClickBack = () => {
+		router.push('/product/checkout/address')
+	}
+
 	return (
 		<div>
 			<h2 className={styles.title()}>Metodo de pago</h2>
 			<div className={styles.containerMethods()}>
-				<button className={cartSelect()} type='button'>
+				<button className={cartSelect()} type='button' onClick={handleClickTransfer}>
 					<div>
 						<MoneyIcon width={25} height={25} />
 						<h4>Tranferencia</h4>
@@ -19,6 +30,11 @@ export default function PayPage() {
 				Una vez acreditado el pago te avisaremos vía mail (puede demorar hasta 48hs
 				hábiles).
 			</p>
+			<div>
+				<button type='button' className={buttonBack()} onClick={handleClickBack}>
+					Volver
+				</button>
+			</div>
 		</div>
 	)
 }

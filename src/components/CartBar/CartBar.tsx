@@ -3,6 +3,7 @@ import { useCartContext } from '@/context/card.context'
 import CartIcon from '@/icons/CartIcon'
 import CloseIcon from '@/icons/CloseIcon'
 import { useCart } from '@/stores/cart'
+import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import CartCard from '../CartCard/CartCard'
 import { styles } from './CartBarStyles'
@@ -10,6 +11,7 @@ import { styles } from './CartBarStyles'
 export default function CartBar() {
 	const { showCartBar, setShowCartBar } = useCartContext()
 	const cart = useCart((state) => state.cart)
+	const router = useRouter()
 
 	useEffect(() => {
 		if (showCartBar) {
@@ -32,6 +34,11 @@ export default function CartBar() {
 
 	if (!showCartBar) {
 		return null
+	}
+
+	const handleClickOrder = () => {
+		setShowCartBar(false)
+		router.push('/product/checkout/address')
 	}
 
 	return (
@@ -58,7 +65,11 @@ export default function CartBar() {
 				</div>
 				<div>
 					{cart.length > 0 ? (
-						<button className={styles.orderButton()} type='button'>
+						<button
+							className={styles.orderButton()}
+							type='button'
+							onClick={handleClickOrder}
+						>
 							Hacer pedido
 						</button>
 					) : (

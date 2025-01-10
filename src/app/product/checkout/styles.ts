@@ -20,6 +20,10 @@ const stylesSlotsLayout = tv({
 	},
 })
 
+export const buttonBack = tv({
+	base: 'flex items-center gap-2  bg-black text-white py-2 px-4 rounded-lg hover:bg-neutral-700 active:bg-neutral-900',
+})
+
 export const cartSelect = tv({
 	base: 'flex flex-col gap-2  md:max-w-72 border border-neutral-300 rounded-2xl p-5 text-left hover:border-neutral-700 active:border-neutral-900 active:bg-neutral-100 [&_div]:flex [&_div]:items-center [&_div]:gap-2 [&_p]:text-base [&_p]:text-neutral-600 [&_h4]:text-lg',
 })
