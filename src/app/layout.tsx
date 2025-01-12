@@ -1,9 +1,10 @@
 import Background from '@/components/Background/Background'
 import CartBar from '@/components/CartBar/CartBar'
-import { CartProvider } from '@/context/card.context'
 import Header from '@/components/Header/Header'
+import { CartProvider } from '@/context/card.context'
 import type { Metadata } from 'next'
 import { Quicksand } from 'next/font/google'
+import { Toaster } from 'sonner'
 import './globals.css'
 
 const inter = Quicksand({
@@ -25,6 +26,7 @@ export default async function RootLayout({
 		<html lang='en' className='relative'>
 			<body className={inter.className}>
 				<CartProvider>
+					<Toaster position='bottom-center' richColors />
 					<CartBar />
 					<Background />
 					<Header />

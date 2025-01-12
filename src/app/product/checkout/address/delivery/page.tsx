@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import type { FormEvent } from 'react'
 import { stylesMain } from '../../styles'
 import { useShipmentData } from '@/stores/shipmentData'
+import { toast } from 'sonner'
 
 export default function DeliveryPage() {
 	const router = useRouter()
@@ -18,6 +19,7 @@ export default function DeliveryPage() {
 		const dataForm = new FormData(event.currentTarget)
 
 		if (!/^\+?[0-9]{10,15}$/.test(dataForm.get('mobile-number') as string)) {
+			toast.error('El numero de celular no es valido')
 			return
 		}
 
@@ -31,7 +33,6 @@ export default function DeliveryPage() {
 
 		setShipmentData(data)
 
-		console.warn('DEBUGPRINT[73]: page.tsx:20: data=', data)
 		router.push('/product/checkout/pay')
 	}
 
