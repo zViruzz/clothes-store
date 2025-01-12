@@ -66,7 +66,7 @@ export default function ProductBuy({ children }: { children: React.ReactNode }) 
 
 					<div className={styles.cardProductsContainer()}>
 						{cart.map((product) => (
-							<div key={product.id} className={styles.cardProduct()}>
+							<div key={product.cartId} className={styles.cardProduct()}>
 								<div className={styles.cardSummaryValue()}>
 									<p>{product.title}</p>
 									<p className={styles.cardSummaryPrice()}>$ {product.price}</p>

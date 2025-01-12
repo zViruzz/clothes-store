@@ -23,3 +23,11 @@ export type CartProduct = {
 	url_images: string[]
 	quantity: number
 }
+
+interface ShipmentDataInterface {
+	name: string
+	address: string
+	mobileNumber: string
+	city: string
+	zip: string
+}
