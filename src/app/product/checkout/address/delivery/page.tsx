@@ -1,11 +1,11 @@
 'use client'
 import { Input } from '@/components/ui/input'
-import { styles } from './styles'
+import { useShipmentData } from '@/stores/shipmentData'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState, type FormEvent } from 'react'
-import { stylesMain } from '../../styles'
-import { useShipmentData } from '@/stores/shipmentData'
 import { toast } from 'sonner'
+import { stylesMain } from '../../styles'
+import { styles } from './styles'
 
 export default function DeliveryPage() {
 	const router = useRouter()
@@ -63,7 +63,7 @@ export default function DeliveryPage() {
 						placeholder='Ingresa tu nombre'
 					/>
 				</div>
-				<div />
+				<div className='hidden md:block' />
 
 				<div>
 					<label htmlFor='address'>Direccion</label>
@@ -74,7 +74,7 @@ export default function DeliveryPage() {
 						placeholder='Ingresa tu direccion'
 					/>
 				</div>
-				<div />
+				<div className='hidden md:block' />
 
 				<div>
 					<label htmlFor='mobile-number'>Celular</label>
@@ -86,7 +86,8 @@ export default function DeliveryPage() {
 						placeholder='Ingresa tu numero'
 					/>
 				</div>
-				<div />
+
+				<div className='hidden md:block' />
 
 				<div>
 					<label htmlFor='city'>Ciudad</label>
