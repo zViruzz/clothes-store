@@ -1,10 +1,10 @@
+import type { ShipmentData } from '@/libs/schemas/checkout'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { ShipmentDataInterface } from '../../types'
 
 interface ShipmentDataState {
-	shipmentData: ShipmentDataInterface
-	setShipmentData: (shipmentData: ShipmentDataInterface) => void
+	shipmentData: ShipmentData
+	setShipmentData: (shipmentData: ShipmentData) => void
 }
 
 export const useShipmentData = create(
@@ -17,7 +17,7 @@ export const useShipmentData = create(
 				city: '',
 				zip: '',
 			},
-			setShipmentData: (shipmentData: ShipmentDataInterface) =>
+			setShipmentData: (shipmentData: ShipmentData) =>
 				set((state) => {
 					return {
 						shipmentData,

@@ -1,10 +1,10 @@
 'use client'
 import TruckIcon from '@/icons/TruckIcon'
+import type { Product } from '@/libs/schemas/checkout'
 import { cn } from '@/libs/utils'
 import { useCart } from '@/stores/cart'
 import { colorTranslator } from '@/utils/colorTranslator'
 import { useState } from 'react'
-import type { Product } from '../../../types'
 import QuantityPicker from '../QuantityPicker/QuantityPicker'
 import { styles } from './ProductOptionsStyles'
 

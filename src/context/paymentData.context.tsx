@@ -1,4 +1,5 @@
 'use client'
+import type { PaymentData } from '@/libs/schemas/checkout'
 import {
 	type Dispatch,
 	type ReactNode,
@@ -7,7 +8,6 @@ import {
 	useContext,
 	useState,
 } from 'react'
-import type { PaymentData } from '../../types'
 
 interface CartProps {
 	children: ReactNode

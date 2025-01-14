@@ -1,6 +1,6 @@
+import type { CartProduct } from '@/libs/schemas/checkout'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { CartProduct } from '../../types'
 
 interface BearState {
 	cart: CartProduct[]

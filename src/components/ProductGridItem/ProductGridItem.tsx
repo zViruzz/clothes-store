@@ -1,4 +1,4 @@
-import type { Product } from '../../../types'
+import type { Product } from '@/libs/schemas/checkout'
 import Card from '../Card/Card'
 
 interface Props {

@@ -1,8 +1,20 @@
 import { z } from 'zod'
 
 const DeliveryMethodEnum = z.enum(['delivery', 'pickup', ''])
-
 const PaymentMethodEnum = z.enum(['transfer', ''])
+
+const ProductSchema = z.object({
+	id: z.number(),
+	name: z.string(),
+	title: z.string(),
+	category: z.string(),
+	description: z.string(),
+	price: z.number(),
+	color_scheme: z.array(z.string()),
+	sizes: z.array(z.string()),
+	url_images: z.array(z.string()),
+	createdAt: z.date(),
+})
 
 const CartProductSchema = z.object({
 	id: z.number(),
@@ -39,3 +51,7 @@ export const CheckoutDataSchema = z.object({
 })
 
 export type CheckoutData = z.infer<typeof CheckoutDataSchema>
+export type PaymentData = z.infer<typeof PaymentDataSchema>
+export type ShipmentData = z.infer<typeof ShipmentDataSchema>
+export type CartProduct = z.infer<typeof CartProductSchema>
+export type Product = z.infer<typeof ProductSchema>

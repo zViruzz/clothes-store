@@ -1,7 +1,10 @@
+import { getProductAction } from '@/action/getProductAction'
 import useQuantity from '@/hooks/useQuantity'
 import CloseIconMin from '@/icons/CloseIconMin'
+import type { CartProduct, Product } from '@/libs/schemas/checkout'
+import { useCart } from '@/stores/cart'
 import Image from 'next/image'
-import type { CartProduct, Product } from '../../../types'
+import { useEffect, useState } from 'react'
 import QuantityPicker from '../QuantityPicker/QuantityPicker'
 import {
 	Select,
@@ -11,9 +14,6 @@ import {
 	SelectValue,
 } from '../ui/select'
 import { styles } from './CartCardStyles'
-import { useCart } from '@/stores/cart'
-import { useEffect, useState } from 'react'
-import { getProductAction } from '@/action/getProductAction'
 
 interface Props extends CartProduct {}
 

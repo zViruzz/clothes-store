@@ -1,5 +1,5 @@
+import type { CartProduct } from '@/libs/schemas/checkout'
 import { useCart } from '@/stores/cart'
-import type { CartProduct } from '../../types'
 
 export default function useQuantity(product: CartProduct) {
 	const changeQuantity = useCart((state) => state.changeQuantity)
