@@ -47,7 +47,9 @@ export default function DeliveryPage() {
 		router.push('/product/checkout/pay')
 	}
 
-	const handleCLickBack = () => {}
+	const handleCLickBack = () => {
+		router.push('/product/checkout/address')
+	}
 
 	return (
 		<div className={styles.container()}>
