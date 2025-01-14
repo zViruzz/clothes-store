@@ -1,12 +1,16 @@
 'use client'
 import MoneyIcon from '@/icons/MoneyIcon'
+import { useRouter } from 'next/navigation'
 import { stylesMain } from '../styles'
 import { styles } from './styles'
-import { useRouter } from 'next/navigation'
+import { usePaymentData } from '@/context/paymentData.context'
 
 export default function PayPage() {
 	const router = useRouter()
+	const { setPaymentData } = usePaymentData()
+
 	const handleClickTransfer = () => {
+		setPaymentData((prev) => ({ ...prev, payment_method: 'transfer' }))
 		router.push('/product/checkout/summary')
 	}
 

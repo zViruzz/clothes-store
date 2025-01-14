@@ -13,40 +13,40 @@ interface CartProps {
 }
 
 type DeliveryMethod = 'delivery' | 'pickup' | ''
-type PayMethod = 'transfer' | ''
+type PaymentMethod = 'transfer' | ''
 
 interface PaymentData {
 	delivery_method: DeliveryMethod
-	pay_method: PayMethod
+	payment_method: PaymentMethod
 }
 
-interface CartContextType {
+interface PaymentDataType {
 	paymentData: PaymentData
 	setPaymentData: Dispatch<SetStateAction<PaymentData>>
 }
 
 const initialState: PaymentData = {
 	delivery_method: '',
-	pay_method: '',
+	payment_method: '',
 }
 
-export const CartProvider = ({ children }: CartProps) => {
+export const PaymentDataProvider = ({ children }: CartProps) => {
 	const [paymentData, setPaymentData] = useState(initialState)
 
 	return (
-		<CartContext.Provider value={{ paymentData, setPaymentData }}>
+		<PaymentDataContext.Provider value={{ paymentData, setPaymentData }}>
 			{children}
-		</CartContext.Provider>
+		</PaymentDataContext.Provider>
 	)
 }
 
-export const CartContext = createContext<CartContextType>({
+export const PaymentDataContext = createContext<PaymentDataType>({
 	paymentData: initialState,
 	setPaymentData: () => {},
 })
 
-export const useCartContext = () => {
-	const context = useContext(CartContext)
+export const usePaymentData = () => {
+	const context = useContext(PaymentDataContext)
 
 	// if (!context.value && context.value !== 0) {
 	// 	throw new Error('GlobalContext must be used within a GlobalContextProvider')
