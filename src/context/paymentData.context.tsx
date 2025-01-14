@@ -7,17 +7,10 @@ import {
 	useContext,
 	useState,
 } from 'react'
+import type { PaymentData } from '../../types'
 
 interface CartProps {
 	children: ReactNode
-}
-
-type DeliveryMethod = 'delivery' | 'pickup' | ''
-type PaymentMethod = 'transfer' | ''
-
-interface PaymentData {
-	delivery_method: DeliveryMethod
-	payment_method: PaymentMethod
 }
 
 interface PaymentDataType {

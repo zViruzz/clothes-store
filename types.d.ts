@@ -24,6 +24,14 @@ export type CartProduct = {
 	quantity: number
 }
 
+type DeliveryMethod = 'delivery' | 'pickup' | ''
+type PaymentMethod = 'transfer' | ''
+
+interface PaymentData {
+	delivery_method: DeliveryMethod
+	payment_method: PaymentMethod
+}
+
 interface ShipmentDataInterface {
 	name: string
 	address: string
