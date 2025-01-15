@@ -5,13 +5,20 @@ import CloseIcon from '@/icons/CloseIcon'
 import MenuIcon from '@/icons/MenuIcon'
 import { cn } from '@/libs/utils'
 import { useCart } from '@/stores/cart'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import Search from '../Search/Search'
 import { styles } from './HeaderStyles'
 import ProfileIcon from '@/icons/ProfileIcon'
+import type { Session } from 'next-auth'
 
-export default function Header() {
+interface Props {
+	session: Session | null
+}
+
+export default function Header({ session }: Props) {
+	console.warn('DEBUGPRINT[88]: Header.tsx:20: session=', session)
 	const [isHiddenMenu, setIsHiddenMenu] = useState(true)
 	const { setShowCartBar } = useCartContext()
 	const cart = useCart((state) => state.cart)
@@ -50,8 +57,19 @@ export default function Header() {
 							{cart?.length > 0 && <span>{cart.length}</span>}
 						</button>
 
-						<Link href='/login' className={styles.profileContainer()}>
-							<ProfileIcon width={22} height={22} />
+						<Link href='/auth/login' className={styles.profileContainer()}>
+							{session?.user?.image ? (
+								<Image
+									className={styles.profileImage()}
+									src={session.user.image}
+									alt={session.user.name || 'user'}
+									width={32}
+									height={32}
+									priority={true}
+								/>
+							) : (
+								<ProfileIcon className='m-2' width={20} height={20} />
+							)}
 						</Link>
 					</div>
 

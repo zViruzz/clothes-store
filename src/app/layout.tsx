@@ -6,6 +6,7 @@ import type { Metadata } from 'next'
 import { Quicksand } from 'next/font/google'
 import { Toaster } from 'sonner'
 import './globals.css'
+import { getServerSession } from 'next-auth'
 
 const inter = Quicksand({
 	subsets: ['latin'],
@@ -22,6 +23,8 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
+	const session = await getServerSession()
+
 	return (
 		<html lang='en' className='relative'>
 			<body className={inter.className}>
@@ -29,7 +32,7 @@ export default async function RootLayout({
 					<Toaster position='bottom-center' richColors />
 					<CartBar />
 					<Background />
-					<Header />
+					<Header session={session} />
 					<main>{children}</main>
 				</CartProvider>
 			</body>

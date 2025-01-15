@@ -8,11 +8,12 @@ export default function SignInButton() {
 		await signIn()
 		router.push('/')
 	}
+
 	return (
 		<button
 			type='button'
 			onClick={handleClick}
-			className='bg-white p-2 rounded text-zinc-900'
+			className='bg-white py-3 px-5 rounded-2xl border font-medium text-zinc-900'
 		>
 			Google
 		</button>

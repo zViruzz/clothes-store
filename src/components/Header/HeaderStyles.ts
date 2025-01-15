@@ -17,7 +17,8 @@ const stylesSlots = tv({
 		listContainer:
 			'flex flex-col text-xl gap-4 text-center [&_a]:text-neutral-600 hover:[&_a]:text-black',
 		profileContainer:
-			'flex border border-neutral-400 rounded-full items-center justify-center text-neutral-600 p-2 hover:text-black [&>svg]:text-neutral-600 hover:[&>svg]:text-black',
+			'flex border border-neutral-400 rounded-full items-center justify-center text-neutral-600 hover:text-black [&>svg]:text-neutral-600 hover:[&>svg]:text-black',
+		profileImage: 'rounded-full min-w-[2rem] min-h-[2rem] ',
 	},
 })
 
