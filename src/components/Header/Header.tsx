@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import Search from '../Search/Search'
 import { styles } from './HeaderStyles'
+import ProfileIcon from '@/icons/ProfileIcon'
 
 export default function Header() {
 	const [isHiddenMenu, setIsHiddenMenu] = useState(true)
@@ -28,7 +29,9 @@ export default function Header() {
 			<div className={styles.container()}>
 				<div className={styles.containerHeader()}>
 					<div className={styles.logoContainer()}>
-						<h1>Store</h1>
+						<Link href='/'>
+							<h1>Store</h1>
+						</Link>
 					</div>
 
 					<div className={styles.searchContainer()}>
@@ -46,6 +49,10 @@ export default function Header() {
 							<CartIcon width={32} height={32} />
 							{cart?.length > 0 && <span>{cart.length}</span>}
 						</button>
+
+						<Link href='/login' className={styles.profileContainer()}>
+							<ProfileIcon width={22} height={22} />
+						</Link>
 					</div>
 
 					<div className={styles.buttonContainer()}>

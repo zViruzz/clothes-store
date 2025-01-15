@@ -7,4 +7,4 @@ const stylesSlots = tv({
 	},
 })
 
-export const { container, containerForm } = stylesSlots()
+export const styles = stylesSlots()

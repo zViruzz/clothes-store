@@ -4,7 +4,8 @@ import AuthForm from '@/components/ui/AuthForm'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { containerForm } from './styles'
+import { styles } from './styles'
+import { Input } from '@/components/ui/input'
 
 export default function loginPage() {
 	const {
@@ -32,11 +33,13 @@ export default function loginPage() {
 
 	return (
 		<AuthForm>
-			<form className={containerForm()} onSubmit={onSubmit}>
+			<form className={styles.containerForm()} onSubmit={onSubmit}>
 				<div>
 					<label htmlFor='username'>Username</label>
-					<input
+					<Input
+						className='w-72'
 						type='username'
+						placeholder='Username'
 						{...register('username', {
 							required: {
 								value: true,
@@ -45,15 +48,13 @@ export default function loginPage() {
 						})}
 					/>
 					{errors.username && (
-						<span className='text-red-500'>
-							{`${errors.username.message}`}
-						</span>
+						<span className='text-red-500'>{`${errors.username.message}`}</span>
 					)}
 				</div>
 
 				<div>
 					<label htmlFor='email'>Email</label>
-					<input
+					<Input
 						type='email'
 						{...register('email', {
 							required: {
@@ -63,15 +64,13 @@ export default function loginPage() {
 						})}
 					/>
 					{errors.email && (
-						<span className='text-red-500'>
-							{`${errors.email.message}`}
-						</span>
+						<span className='text-red-500'>{`${errors.email.message}`}</span>
 					)}
 				</div>
 
 				<div>
 					<label htmlFor='password'>Password</label>
-					<input
+					<Input
 						type='password'
 						{...register('password', {
 							required: {
@@ -81,9 +80,7 @@ export default function loginPage() {
 						})}
 					/>
 					{errors.password && (
-						<span className='text-red-500'>
-							{`${errors.password.message}`}
-						</span>
+						<span className='text-red-500'>{`${errors.password.message}`}</span>
 					)}
 				</div>
 
@@ -91,8 +88,10 @@ export default function loginPage() {
 					<SignInButton />
 				</div>
 
-				<div className='bg-blue-500 rounded-xl p-2'>
-					<button type='submit'>Register</button>
+				<div>
+					<button className='bg-primary rounded-xl p-2 w-full' type='submit'>
+						Register
+					</button>
 				</div>
 			</form>
 		</AuthForm>

@@ -8,7 +8,7 @@ const stylesSlots = tv({
 		logoContainer: 'flex text-2xl font-bold',
 		searchContainer: 'md:flex hidden justify-center',
 		navContainer:
-			'hidden md:flex gap-8 text-xl justify-end font-medium [&_a]:text-neutral-600 hover:[&_a]:text-black',
+			'hidden md:flex gap-8 text-xl justify-end items-center font-medium [&_a]:text-neutral-600 hover:[&_a]:text-black',
 		buttonCart:
 			'flex justify-center items-center relative text-neutral-600 hover:text-black [&>span]:absolute [&>span]:-top-2 [&>span]:-right-2 [&>span]:text-neutral-500 [&>span]:text-sm [&>span]:w-5 [&>span]:h-5 [&>span]:flex [&>span]:justify-center [&>span]:items-center [&>span]:bg-primary  [&>span]:rounded-full',
 		buttonContainer:
@@ -16,6 +16,8 @@ const stylesSlots = tv({
 		menuButtonClose: 'flex justify-end [&>button]:pb-4 [&>button]:text-black',
 		listContainer:
 			'flex flex-col text-xl gap-4 text-center [&_a]:text-neutral-600 hover:[&_a]:text-black',
+		profileContainer:
+			'flex border border-neutral-400 rounded-full items-center justify-center text-neutral-600 p-2 hover:text-black [&>svg]:text-neutral-600 hover:[&>svg]:text-black',
 	},
 })
 
