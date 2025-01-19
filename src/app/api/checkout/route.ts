@@ -1,3 +1,4 @@
+import { savePurchaseToDB } from '@/libs/database'
 import { CheckoutDataSchema } from '@/libs/schemas/checkout'
 import { NextResponse } from 'next/server'
 
@@ -7,9 +8,11 @@ export async function POST(request: Request) {
 
 		const validatedData = CheckoutDataSchema.parse(body)
 
+		savePurchaseToDB(validatedData)
+
 		return NextResponse.json({
 			success: true,
-			message: 'Datos validados correctamente',
+			message: 'Data validated correctly',
 			data: validatedData,
 		})
 	} catch (error) {
@@ -17,7 +20,7 @@ export async function POST(request: Request) {
 			return NextResponse.json(
 				{
 					success: false,
-					message: 'Datos inválidos',
+					message: 'Data invalid',
 					errors: error.errors,
 				},
 				{ status: 400 },
@@ -28,7 +31,7 @@ export async function POST(request: Request) {
 		return NextResponse.json(
 			{
 				success: false,
-				message: 'Error interno del servidor',
+				message: 'Internal server error',
 			},
 			{ status: 500 },
 		)

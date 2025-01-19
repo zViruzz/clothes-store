@@ -43,6 +43,7 @@ const ShipmentDataSchema = z.object({
 })
 
 export const CheckoutDataSchema = z.object({
+	userId: z.string(),
 	username: z.string().min(1), // Validación: usuario requerido
 	email: z.string().email('Email inválido'),
 	payment_data: PaymentDataSchema,
