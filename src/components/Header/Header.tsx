@@ -18,7 +18,6 @@ interface Props {
 }
 
 export default function Header({ session }: Props) {
-	console.warn('DEBUGPRINT[88]: Header.tsx:20: session=', session)
 	const [isHiddenMenu, setIsHiddenMenu] = useState(true)
 	const { setShowCartBar } = useCartContext()
 	const cart = useCart((state) => state.cart)

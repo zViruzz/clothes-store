@@ -11,7 +11,6 @@ export default function registerPage() {
 	} = useForm()
 
 	const onSubmit = handleSubmit(async (data) => {
-		console.log(data)
 		const res = await fetch('/api/auth/register', {
 			method: 'POST',
 			body: JSON.stringify(data),
@@ -37,9 +36,7 @@ export default function registerPage() {
 						})}
 					/>
 					{errors.username && (
-						<span className='text-red-500'>
-							{`${errors.username.message}`}
-						</span>
+						<span className='text-red-500'>{`${errors.username.message}`}</span>
 					)}
 				</div>
 
@@ -55,9 +52,7 @@ export default function registerPage() {
 						})}
 					/>
 					{errors.email && (
-						<span className='text-red-500'>
-							{`${errors.email.message}`}
-						</span>
+						<span className='text-red-500'>{`${errors.email.message}`}</span>
 					)}
 				</div>
 
@@ -73,9 +68,7 @@ export default function registerPage() {
 						})}
 					/>
 					{errors.password && (
-						<span className='text-red-500'>
-							{`${errors.password.message}`}
-						</span>
+						<span className='text-red-500'>{`${errors.password.message}`}</span>
 					)}
 				</div>
 

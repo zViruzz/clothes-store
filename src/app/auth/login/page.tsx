@@ -25,7 +25,6 @@ export default function loginPage() {
 			},
 		})
 		const resJson = res.json()
-		console.log('🚀 ~ onSubmit ~ resJson:', resJson)
 		if (res.ok) {
 			router.push('/auth/login')
 		}

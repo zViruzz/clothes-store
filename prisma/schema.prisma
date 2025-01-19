@@ -8,11 +8,28 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  image     String
-  createdAt DateTime @default(now())
+  id            String    @id @default(cuid()) // ID único del usuario
+  name          String? // Nombre del usuario
+  email         String?   @unique // Correo único
+  emailVerified Boolean? // Fecha de verificación de correo
+  image         String? // Imagen del usuario
+  accounts      Account[] // Relación con cuentas (Proveedores)
+  createdAt     DateTime  @default(now()) // Fecha de creación
+  updatedAt     DateTime  @updatedAt // Fecha de actualización
+}
+
+model Account {
+  id                String   @id @default(cuid()) // ID único de la cuenta
+  id_token          String
+  userId            String // ID del usuario asociado
+  user              User     @relation(fields: [userId], references: [id]) // Relación con User
+  type              String // Tipo de cuenta (e.g., oauth)
+  provider          String // Nombre del proveedor (e.g., google, facebook)
+  providerAccountId String // ID del proveedor (e.g., Google sub)
+  accessToken       String? // Token de acceso, si aplica
+  expiresAt         Int? // Fecha de expiración del token (timestamp)
+  createdAt         DateTime @default(now()) // Fecha de creación
+  updatedAt         DateTime @updatedAt // Fecha de actualización
 }
 
 model Product {
