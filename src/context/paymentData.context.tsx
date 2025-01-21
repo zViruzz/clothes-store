@@ -19,8 +19,8 @@ interface PaymentDataType {
 }
 
 const initialState: PaymentData = {
-	delivery_method: '',
-	payment_method: '',
+	delivery_method: 'pickup',
+	payment_method: 'transfer',
 }
 
 export const PaymentDataProvider = ({ children }: CartProps) => {

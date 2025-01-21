@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
-const DeliveryMethodEnum = z.enum(['delivery', 'pickup', ''])
-const PaymentMethodEnum = z.enum(['transfer', ''])
+const DeliveryMethodEnum = z.enum(['delivery', 'pickup'])
+const PaymentMethodEnum = z.enum(['transfer'])
 
 const ProductSchema = z.object({
 	id: z.number(),

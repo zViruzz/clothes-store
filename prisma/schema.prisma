@@ -8,14 +8,15 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid()) // ID único del usuario
+  id            String     @id @default(cuid()) // ID único del usuario
   name          String? // Nombre del usuario
-  email         String?   @unique // Correo único
+  email         String?    @unique // Correo único
   emailVerified Boolean? // Fecha de verificación de correo
   image         String? // Imagen del usuario
   accounts      Account[] // Relación con cuentas (Proveedores)
-  createdAt     DateTime  @default(now()) // Fecha de creación
-  updatedAt     DateTime  @updatedAt // Fecha de actualización
+  purchases     Purchase[] // Relación con las compras realizadas
+  createdAt     DateTime   @default(now()) // Fecha de creación
+  updatedAt     DateTime   @updatedAt // Fecha de actualización
 }
 
 model Account {
@@ -43,4 +44,57 @@ model Product {
   color_scheme String[]
   url_images   String[]
   createdAt    DateTime @default(now())
+}
+
+model Purchase {
+  id             String       @id @default(cuid()) // ID único de la compra
+  userId         String // Relación con el usuario que realizó la compra
+  user           User         @relation(fields: [userId], references: [id]) // Relación con User
+  paymentData    PaymentData  @relation(fields: [paymentDataId], references: [id]) // Relación con datos de pago
+  paymentDataId  String // ID de los datos de pago
+  shipmentData   ShipmentData @relation(fields: [shipmentDataId], references: [id]) // Relación con datos de envío
+  shipmentDataId String // ID de los datos de envío
+  cartItems      CartItem[] // Relación con los artículos del carrito
+  createdAt      DateTime     @default(now()) // Fecha de creación de la compra
+  updatedAt      DateTime     @updatedAt // Fecha de actualización
+}
+
+model PaymentData {
+  id             String         @id @default(cuid()) // ID único para datos de pago
+  deliveryMethod DeliveryMethod // Método de entrega (enum)
+  paymentMethod  PaymentMethod // Método de pago (enum)
+  Purchase       Purchase[]
+}
+
+model ShipmentData {
+  id           String     @id @default(cuid()) // ID único para datos de envío
+  name         String // Nombre del destinatario
+  address      String // Dirección del destinatario
+  mobileNumber String // Número de móvil del destinatario
+  city         String // Ciudad del destinatario
+  zip          String // Código postal del destinatario
+  Purchase     Purchase[]
+}
+
+model CartItem {
+  id         String   @id @default(cuid()) // ID único del artículo
+  purchaseId String // Relación con la compra
+  purchase   Purchase @relation(fields: [purchaseId], references: [id]) // Relación con Purchase
+  name       String // Nombre del producto
+  title      String // Título del producto
+  category   String // Categoría del producto
+  price      Float // Precio del producto
+  color      String // Color del producto
+  size       String // Talla del producto
+  urlImages  String[] // URLs de imágenes del producto
+  quantity   Int // Cantidad del producto
+}
+
+enum DeliveryMethod {
+  delivery
+  pickup
+}
+
+enum PaymentMethod {
+  transfer
 }
