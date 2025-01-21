@@ -6,11 +6,20 @@ import { stylesMain } from '../styles'
 import { usePaymentData } from '@/context/paymentData.context'
 import { useShipmentData } from '@/stores/shipmentData'
 import { toast } from 'sonner'
+import { useCart } from '@/stores/cart'
+import { useSession } from 'next-auth/react'
 
 export default function SummeryPage() {
 	const router = useRouter()
 	const shipmentData = useShipmentData((state) => state.shipmentData)
+	const cart = useCart((state) => state.cart)
 	const { paymentData } = usePaymentData()
+	const { data: session, status } = useSession()
+
+	if (status === 'loading') {
+		toast.loading('Cargando...')
+		return <div>Loading...</div>
+	}
 
 	if (paymentData.payment_method === '' || paymentData.delivery_method === '') {
 		toast.warning('Debes seleccionar un metodo de envio y un metodo de pago')
@@ -21,7 +30,26 @@ export default function SummeryPage() {
 		router.push('/product/checkout/pay')
 	}
 
-	const handleCLickGo = () => {}
+	const handleCLickConfirmPayment = async () => {
+		if (session === null || session.user === undefined) {
+			toast.error('Debes iniciar sesion para realizar la compra')
+			return
+		}
+
+		const checkoutData = {
+			payment_data: paymentData,
+			shipment_data: shipmentData,
+			cart: cart,
+		}
+
+		await fetch('/api/checkout', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(checkoutData),
+		})
+	}
 
 	return (
 		<div>
@@ -56,7 +84,7 @@ export default function SummeryPage() {
 					<button
 						type='submit'
 						className={cn(stylesMain.buttonStep(), styles.buttonPay())}
-						onClick={handleCLickGo}
+						onClick={handleCLickConfirmPayment}
 					>
 						Confirmar pago
 					</button>

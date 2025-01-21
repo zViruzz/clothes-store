@@ -4,7 +4,7 @@ import prisma from '@/libs/prisma'
 // TODO: Guardar compra en la base de datos y aprender bien los es quemas que aplicaste
 export async function savePurchaseToDB(data: CheckoutData) {
 	try {
-		const purchase = await prisma.purchase.create({
+		await prisma.purchase.create({
 			data: {
 				user: {
 					connect: { id: data.userId }, // Relaciona el usuario existente
@@ -38,9 +38,7 @@ export async function savePurchaseToDB(data: CheckoutData) {
 				},
 			},
 		})
-
-		console.log('🚀 ~ saveToDB ~ purchase:', purchase)
 	} catch (error) {
-		console.log(error)
+		console.log('error saving purchase:', error)
 	}
 }

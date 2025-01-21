@@ -1,17 +1,11 @@
-import type { Session } from 'next-auth'
+'use client'
 import { SessionProvider } from 'next-auth/react'
+import type { ReactNode } from 'react'
 
 export interface AppProps {
-	Component: React.ElementType
-	pageProps: {
-		session: Session | null
-	} & Record<string, unknown>
+	children: ReactNode
 }
 
-export default function ProviderSession({ Component, pageProps }: AppProps) {
-	return (
-		<SessionProvider session={pageProps.session}>
-			<Component {...pageProps} />
-		</SessionProvider>
-	)
+export default function ProviderSession({ children }: AppProps) {
+	return <SessionProvider>{children}</SessionProvider>
 }

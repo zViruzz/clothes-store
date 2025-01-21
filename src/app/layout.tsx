@@ -7,6 +7,7 @@ import { Quicksand } from 'next/font/google'
 import { Toaster } from 'sonner'
 import './globals.css'
 import { getServerSession } from 'next-auth'
+import ProviderSession from '@/components/ProviderSession'
 
 const inter = Quicksand({
 	subsets: ['latin'],
@@ -27,15 +28,17 @@ export default async function RootLayout({
 
 	return (
 		<html lang='en' className='relative'>
-			<body className={inter.className}>
-				<CartProvider>
-					<Toaster position='bottom-center' richColors />
-					<CartBar />
-					<Background />
-					<Header session={session} />
-					<main>{children}</main>
-				</CartProvider>
-			</body>
+			<ProviderSession>
+				<body className={inter.className}>
+					<CartProvider>
+						<Toaster position='bottom-center' richColors />
+						<CartBar />
+						<Background />
+						<Header session={session} />
+						<main>{children}</main>
+					</CartProvider>
+				</body>
+			</ProviderSession>
 		</html>
 	)
 }

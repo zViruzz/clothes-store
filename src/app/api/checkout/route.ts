@@ -1,12 +1,27 @@
 import { savePurchaseToDB } from '@/libs/database'
 import { CheckoutDataSchema } from '@/libs/schemas/checkout'
+import { getServerSession } from 'next-auth'
 import { NextResponse } from 'next/server'
+import prisma from '@/libs/prisma'
 
 export async function POST(request: Request) {
 	try {
 		const body = await request.json()
+		const session = await getServerSession()
+		const user = await prisma.user.findUnique({
+			where: {
+				email: session?.user?.email ?? '',
+			},
+		})
 
-		const validatedData = CheckoutDataSchema.parse(body)
+		const checkoutData = {
+			userId: user?.id ?? '',
+			username: user?.name ?? '',
+			email: user?.email ?? '',
+			...body,
+		}
+
+		const validatedData = CheckoutDataSchema.parse(checkoutData)
 
 		savePurchaseToDB(validatedData)
 

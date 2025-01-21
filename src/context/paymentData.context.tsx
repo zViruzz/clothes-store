@@ -1,5 +1,4 @@
 'use client'
-import type { PaymentData } from '@/libs/schemas/checkout'
 import {
 	type Dispatch,
 	type ReactNode,
@@ -9,18 +8,23 @@ import {
 	useState,
 } from 'react'
 
+interface PaymentDataContextInterface {
+	delivery_method: 'pickup' | 'delivery' | ''
+	payment_method: 'transfer' | ''
+}
+
 interface CartProps {
 	children: ReactNode
 }
 
 interface PaymentDataType {
-	paymentData: PaymentData
-	setPaymentData: Dispatch<SetStateAction<PaymentData>>
+	paymentData: PaymentDataContextInterface
+	setPaymentData: Dispatch<SetStateAction<PaymentDataContextInterface>>
 }
 
-const initialState: PaymentData = {
-	delivery_method: 'pickup',
-	payment_method: 'transfer',
+const initialState: PaymentDataContextInterface = {
+	delivery_method: '',
+	payment_method: '',
 }
 
 export const PaymentDataProvider = ({ children }: CartProps) => {
