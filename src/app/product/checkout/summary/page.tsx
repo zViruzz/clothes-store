@@ -42,13 +42,18 @@ export default function SummeryPage() {
 			cart: cart,
 		}
 
-		await fetch('/api/checkout', {
+		const response = await fetch('/api/checkout', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(checkoutData),
 		})
+		const data = await response.json()
+		if (data.message === 'Data validated correctly') {
+			console.log('data validada')
+			// router.push(`/product/checkout/confirm/${data.data.id}`)
+		}
 	}
 
 	return (

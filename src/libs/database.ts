@@ -1,7 +1,6 @@
 import type { CheckoutData } from './schemas/checkout'
 import prisma from '@/libs/prisma'
 
-// TODO: Guardar compra en la base de datos y aprender bien los es quemas que aplicaste
 export async function savePurchaseToDB(data: CheckoutData) {
 	try {
 		await prisma.purchase.create({
