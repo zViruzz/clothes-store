@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
 		const validatedData = CheckoutDataSchema.parse(checkoutData)
 
-		// savePurchaseToDB(validatedData)
+		savePurchaseToDB(validatedData)
 
 		return NextResponse.json({
 			success: true,

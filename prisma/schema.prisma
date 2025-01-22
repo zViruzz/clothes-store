@@ -47,7 +47,7 @@ model Product {
 }
 
 model Purchase {
-  id             String       @id @default(cuid()) // ID único de la compra
+  id             String       @id
   userId         String // Relación con el usuario que realizó la compra
   user           User         @relation(fields: [userId], references: [id]) // Relación con User
   paymentData    PaymentData  @relation(fields: [paymentDataId], references: [id]) // Relación con datos de pago

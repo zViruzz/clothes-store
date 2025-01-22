@@ -3,8 +3,11 @@ import prisma from '@/libs/prisma'
 
 export async function savePurchaseToDB(data: CheckoutData) {
 	try {
+		const orderId = `ORDER-${Date.now()}-${Math.floor(Math.random() * 1000)}`
+
 		await prisma.purchase.create({
 			data: {
+				id: orderId,
 				user: {
 					connect: { id: data.userId }, // Relaciona el usuario existente
 				},
