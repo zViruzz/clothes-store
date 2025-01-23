@@ -74,6 +74,7 @@ model ShipmentData {
   city         String? // Ciudad del destinatario
   zip          String? // Código postal del destinatario
   Purchase     Purchase[]
+  createdAt    DateTime   @default(now()) // Fecha de creación de la compra
 }
 
 model CartItem {
