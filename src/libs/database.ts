@@ -5,7 +5,7 @@ export async function savePurchaseToDB(data: CheckoutData) {
 	try {
 		const orderId = `ORDER-${Date.now()}-${Math.floor(Math.random() * 1000)}`
 
-		return await prisma.purchase.create({
+		const res = await prisma.purchase.create({
 			data: {
 				id: orderId,
 				user: {
@@ -40,6 +40,9 @@ export async function savePurchaseToDB(data: CheckoutData) {
 				},
 			},
 		})
+
+		console.warn('DEBUGPRINT[105]: database.ts:8: res=', res)
+		return res
 	} catch (error) {
 		console.log('error saving purchase:', error)
 	}

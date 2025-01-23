@@ -35,11 +35,14 @@ const PaymentDataSchema = z.object({
 })
 
 const ShipmentDataSchema = z.object({
-	name: z.string().min(1), // Validación: nombre requerido
-	address: z.string().min(1), // Validación: dirección requerida
+	name: z.string().min(1).optional(),
+	address: z.string().min(1).optional(),
 	mobileNumber: z.string().regex(/^\+?[0-9]{10,15}$/, 'Número de teléfono inválido'),
-	city: z.string().min(1),
-	zip: z.string().regex(/^\d{4,6}$/, 'Código postal inválido'), // Ejemplo: 4 a 6 dígitos
+	city: z.string().min(1).optional(),
+	zip: z
+		.string()
+		.regex(/^\d{4,6}$/, 'Código postal inválido')
+		.optional(),
 })
 
 export const CheckoutDataSchema = z.object({

@@ -68,11 +68,11 @@ model PaymentData {
 
 model ShipmentData {
   id           String     @id @default(cuid()) // ID único para datos de envío
-  name         String // Nombre del destinatario
-  address      String // Dirección del destinatario
+  name         String? // Nombre del destinatario
+  address      String? // Dirección del destinatario
   mobileNumber String // Número de móvil del destinatario
-  city         String // Ciudad del destinatario
-  zip          String // Código postal del destinatario
+  city         String? // Ciudad del destinatario
+  zip          String? // Código postal del destinatario
   Purchase     Purchase[]
 }
 

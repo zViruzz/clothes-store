@@ -1,8 +1,8 @@
 import { savePurchaseToDB } from '@/libs/database'
+import prisma from '@/libs/prisma'
 import { CheckoutDataSchema } from '@/libs/schemas/checkout'
 import { getServerSession } from 'next-auth'
 import { NextResponse } from 'next/server'
-import prisma from '@/libs/prisma'
 
 export async function POST(request: Request) {
 	try {

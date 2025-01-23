@@ -11,11 +11,11 @@ export const useShipmentData = create(
 	persist<ShipmentDataState>(
 		(set) => ({
 			shipmentData: {
-				name: '',
-				address: '',
+				name: undefined,
+				address: undefined,
 				mobileNumber: '',
-				city: '',
-				zip: '',
+				city: undefined,
+				zip: undefined,
 			},
 			setShipmentData: (shipmentData: ShipmentData) =>
 				set((state) => {

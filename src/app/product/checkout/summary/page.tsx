@@ -1,13 +1,13 @@
 'use client'
-import { cn } from '@/libs/utils'
-import { styles } from './styles'
-import { redirect, useRouter } from 'next/navigation'
-import { stylesMain } from '../styles'
 import { usePaymentData } from '@/context/paymentData.context'
-import { useShipmentData } from '@/stores/shipmentData'
-import { toast } from 'sonner'
+import { cn } from '@/libs/utils'
 import { useCart } from '@/stores/cart'
+import { useShipmentData } from '@/stores/shipmentData'
 import { useSession } from 'next-auth/react'
+import { redirect, useRouter } from 'next/navigation'
+import { toast } from 'sonner'
+import { stylesMain } from '../styles'
+import { styles } from './styles'
 
 export default function SummeryPage() {
 	const router = useRouter()
@@ -31,29 +31,32 @@ export default function SummeryPage() {
 	}
 
 	const handleCLickConfirmPayment = async () => {
-		if (session === null || session.user === undefined) {
-			toast.error('Debes iniciar sesion para realizar la compra')
-			return
-		}
+		try {
+			if (session === null || session.user === undefined) {
+				toast.error('Debes iniciar sesion para realizar la compra')
+				return
+			}
 
-		const checkoutData = {
-			payment_data: paymentData,
-			shipment_data: shipmentData,
-			cart: cart,
-		}
+			const checkoutData = {
+				payment_data: paymentData,
+				shipment_data: shipmentData,
+				cart: cart,
+			}
 
-		const response = await fetch('/api/checkout', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(checkoutData),
-		})
-		const data = await response.json()
+			const response = await fetch('/api/checkout', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(checkoutData),
+			})
+			const data = await response.json()
 
-		if (data.message === 'Data validated correctly') {
-			console.log('data validada')
-			router.push(`/confirm/${data.data.id}`)
+			if (data.message === 'Data validated correctly') {
+				router.push(`/confirm/${data.data.id}`)
+			}
+		} catch (error) {
+			console.error(error)
 		}
 	}
 
