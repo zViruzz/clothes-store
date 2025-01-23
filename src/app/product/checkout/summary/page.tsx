@@ -50,9 +50,10 @@ export default function SummeryPage() {
 			body: JSON.stringify(checkoutData),
 		})
 		const data = await response.json()
+
 		if (data.message === 'Data validated correctly') {
 			console.log('data validada')
-			// router.push(`/product/checkout/confirm/${data.data.id}`)
+			router.push(`/confirm/${data.data.id}`)
 		}
 	}
 

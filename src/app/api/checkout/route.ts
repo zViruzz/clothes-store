@@ -23,12 +23,14 @@ export async function POST(request: Request) {
 
 		const validatedData = CheckoutDataSchema.parse(checkoutData)
 
-		savePurchaseToDB(validatedData)
-
+		const res = await savePurchaseToDB(validatedData)
 		return NextResponse.json({
 			success: true,
 			message: 'Data validated correctly',
-			data: validatedData,
+			data: {
+				id: res?.id,
+				...validatedData,
+			},
 		})
 	} catch (error) {
 		if (error instanceof Error && 'errors' in error) {

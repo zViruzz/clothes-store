@@ -6,15 +6,13 @@ interface Props {
 }
 
 export default async function ConfirmPage({ params }: Props) {
-	console.log(params)
+	const { id } = await params
 
 	const res = await prisma.purchase.findUnique({
 		where: {
-			id: 'cm65rp85n00067nyrv2yme9lz',
+			id,
 		},
 	})
-
-	console.warn('DEBUGPRINT[102]: page.tsx:10: res=', res)
 
 	return (
 		<div className={styles.container()}>

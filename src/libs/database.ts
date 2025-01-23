@@ -5,7 +5,7 @@ export async function savePurchaseToDB(data: CheckoutData) {
 	try {
 		const orderId = `ORDER-${Date.now()}-${Math.floor(Math.random() * 1000)}`
 
-		await prisma.purchase.create({
+		return await prisma.purchase.create({
 			data: {
 				id: orderId,
 				user: {
