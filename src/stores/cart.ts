@@ -8,6 +8,7 @@ interface BearState {
 	removeProductFromCart: (product: CartProduct) => void
 	changeSizes: (product: CartProduct, value: string) => void
 	changeQuantity: (product: CartProduct, value: number) => void
+	clearCart: () => void
 }
 
 export const useCart = create(
@@ -46,6 +47,7 @@ export const useCart = create(
 					}
 				}),
 
+			clearCart: () => set({ cart: [] }),
 			addProductCart: (product: CartProduct) =>
 				set((state) => {
 					const isProductInCart = state.cart.some(

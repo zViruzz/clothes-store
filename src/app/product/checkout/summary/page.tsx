@@ -13,6 +13,7 @@ export default function SummeryPage() {
 	const router = useRouter()
 	const shipmentData = useShipmentData((state) => state.shipmentData)
 	const cart = useCart((state) => state.cart)
+	const clearCart = useCart((state) => state.clearCart)
 	const { paymentData } = usePaymentData()
 	const { data: session, status } = useSession()
 
@@ -53,6 +54,7 @@ export default function SummeryPage() {
 			const data = await response.json()
 
 			if (data.message === 'Data validated correctly') {
+				clearCart()
 				router.push(`/confirm/${data.data.id}`)
 			}
 		} catch (error) {
