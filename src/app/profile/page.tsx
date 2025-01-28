@@ -25,8 +25,7 @@ export default async function ProfilePage() {
 			cartItems: true,
 		},
 	})
-
-	console.warn('DEBUGPRINT[118]: page.tsx:20: purchase=', purchase)
+	console.warn('DEBUGPRINT[119]: page.tsx:20: purchase=', purchase)
 
 	return (
 		<div className={styles.container()}>
@@ -37,17 +36,17 @@ export default async function ProfilePage() {
 						<th>ID</th>
 						<th>Fecha</th>
 						<th>Estado</th>
-						<th>Total</th>
+						<th>Cantidad</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
-					{orders.map((order) => (
+					{purchase.map((order) => (
 						<tr key={order.id}>
 							<td>{order.id}</td>
-							<td>{order.date}</td>
+							<td>{`${order.createdAt.getDate()}/${order.createdAt.getMonth()}/${order.createdAt.getFullYear()}`}</td>
 							<td>{order.status}</td>
-							<td>${order.total.toFixed(2)}</td>
+							<td>{order.cartItems.length}</td>
 							<td>
 								<button type='button' className={styles.detailsButton()}>
 									Ver más detalles

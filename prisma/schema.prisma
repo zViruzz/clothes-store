@@ -47,16 +47,17 @@ model Product {
 }
 
 model Purchase {
-  id             String       @id
+  id             String         @id
   userId         String
-  user           User         @relation(fields: [userId], references: [id])
-  paymentData    PaymentData  @relation(fields: [paymentDataId], references: [id])
+  user           User           @relation(fields: [userId], references: [id])
+  paymentData    PaymentData    @relation(fields: [paymentDataId], references: [id])
   paymentDataId  String
-  shipmentData   ShipmentData @relation(fields: [shipmentDataId], references: [id])
+  shipmentData   ShipmentData   @relation(fields: [shipmentDataId], references: [id])
   shipmentDataId String
   cartItems      CartItem[]
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
+  status         PurchaseStatus @default(PROCESSING)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
 }
 
 model PaymentData {
@@ -89,6 +90,16 @@ model CartItem {
   size       String
   urlImages  String[]
   quantity   Int
+}
+
+enum PurchaseStatus {
+  FAILED
+  CANCELLED
+  PROCESSING
+  PENDING
+  SHIPPED
+  DELIVERED
+  READY_FOR_PICKUP
 }
 
 enum DeliveryMethod {

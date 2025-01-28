@@ -1,0 +1,5 @@
+-- CreateEnum
+CREATE TYPE "PurchaseStatus" AS ENUM ('FAILED', 'CANCELLED', 'PROCESSING', 'PENDING', 'SHIPPED', 'DELIVERED', 'READY_FOR_PICKUP');
+
+-- AlterTable
+ALTER TABLE "Purchase" ADD COLUMN     "status" "PurchaseStatus" NOT NULL DEFAULT 'PROCESSING';
