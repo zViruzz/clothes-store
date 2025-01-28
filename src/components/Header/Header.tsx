@@ -56,7 +56,10 @@ export default function Header({ session }: Props) {
 							{cart?.length > 0 && <span>{cart.length}</span>}
 						</button>
 
-						<Link href='/auth/login' className={styles.profileContainer()}>
+						<Link
+							href={session ? '/profile' : '/auth/login'}
+							className={styles.profileContainer()}
+						>
 							{session?.user?.image ? (
 								<Image
 									className={styles.profileImage()}
