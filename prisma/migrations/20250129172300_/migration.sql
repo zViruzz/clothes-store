@@ -1,4 +1,7 @@
 -- CreateEnum
+CREATE TYPE "PurchaseStatus" AS ENUM ('FAILED', 'CANCELLED', 'PROCESSING', 'PENDING', 'SHIPPED', 'DELIVERED', 'READY_FOR_PICKUP');
+
+-- CreateEnum
 CREATE TYPE "DeliveryMethod" AS ENUM ('delivery', 'pickup');
 
 -- CreateEnum
@@ -55,6 +58,7 @@ CREATE TABLE "Purchase" (
     "userId" TEXT NOT NULL,
     "paymentDataId" TEXT NOT NULL,
     "shipmentDataId" TEXT NOT NULL,
+    "status" "PurchaseStatus" NOT NULL DEFAULT 'PROCESSING',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -66,6 +70,7 @@ CREATE TABLE "PaymentData" (
     "id" TEXT NOT NULL,
     "deliveryMethod" "DeliveryMethod" NOT NULL,
     "paymentMethod" "PaymentMethod" NOT NULL,
+    "receiptPath" TEXT,
 
     CONSTRAINT "PaymentData_pkey" PRIMARY KEY ("id")
 );
