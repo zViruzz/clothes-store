@@ -1,6 +1,4 @@
 import prisma from '@/libs/prisma'
-import { styles } from './styles'
-import { ArrowLeft } from 'lucide-react'
 import {
 	Table,
 	TableBody,

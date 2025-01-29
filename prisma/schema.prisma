@@ -64,6 +64,7 @@ model PaymentData {
   id             String         @id @default(cuid())
   deliveryMethod DeliveryMethod
   paymentMethod  PaymentMethod
+  receiptPath    String?
   Purchase       Purchase[]
 }
 

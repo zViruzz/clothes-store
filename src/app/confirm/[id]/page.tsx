@@ -27,7 +27,7 @@ export default async function ConfirmPage({ params }: Props) {
 						Ver mas
 					</button>
 					<button className={styles.button()} type='button'>
-						Comprar mas
+						Subir comprobante
 					</button>
 				</div>
 			</div>

@@ -27,6 +27,7 @@ export default async function MyPurchasesPage() {
 		},
 		include: {
 			cartItems: true,
+			paymentData: true,
 		},
 	})
 
@@ -39,7 +40,7 @@ export default async function MyPurchasesPage() {
 				<Table>
 					<TableHeader>
 						<TableRow>
-							<TableHead className='w-[100px]'>ID</TableHead>
+							<TableHead className='w-[260px]'>ID</TableHead>
 							<TableHead>Fecha</TableHead>
 							<TableHead>Estado</TableHead>
 							<TableHead className='text-right'>Cantidad</TableHead>
@@ -67,31 +68,29 @@ export default async function MyPurchasesPage() {
 									</span>
 								</TableCell>
 								<TableCell className='text-right'>{order.cartItems.length}</TableCell>
-								<TableCell className='text-right flex justify-end'>
+								<TableCell className='text-right flex justify-end gap-3'>
 									<Link
 										href={`/profile/my-purchases/${order.id}`}
-										className='border flex items-center justify-center w-32 h-11 rounded'
+										className='border flex items-center justify-center w-32 h-11 rounded-md'
 									>
 										<Eye className='h-4 w-4 mr-2' />
 										Ver detalles
 									</Link>
+
+									{order.paymentData.paymentMethod === 'transfer' && (
+										<Link
+											href={`/confirm/${order.id}`}
+											className='border h-11 w-40 rounded-md flex justify-center items-center'
+										>
+											Subir comprobante
+										</Link>
+									)}
 								</TableCell>
 							</TableRow>
 						))}
 					</TableBody>
 				</Table>
 			</div>
-			{/* <div className='flex items-center justify-between mt-4'> */}
-			{/* 	<Button variant='outline' size='sm'> */}
-			{/* 		<ChevronLeft className='h-4 w-4 mr-2' /> */}
-			{/* 		Anterior */}
-			{/* 	</Button> */}
-			{/* 	<span className='text-sm text-gray-600'>Página 1 de 3</span> */}
-			{/* 	<Button variant='outline' size='sm'> */}
-			{/* 		Siguiente */}
-			{/* 		<ChevronRight className='h-4 w-4 ml-2' /> */}
-			{/* 	</Button> */}
-			{/* </div> */}
 		</div>
 	)
 }
