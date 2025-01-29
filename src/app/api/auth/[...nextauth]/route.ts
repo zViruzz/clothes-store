@@ -27,7 +27,8 @@ const authOptions: NextAuthOptions = {
 					data: {
 						name: user.name,
 						email: user.email,
-						emailVerified: profile?.email_verified,
+						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+						emailVerified: (profile as any).email_verified,
 						image: user.image,
 						accounts: {
 							create: [
