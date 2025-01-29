@@ -1,6 +1,6 @@
-import NextAuth, { type NextAuthOptions } from 'next-auth'
-import GoogleProvider from 'next-auth/providers/google'
 import prisma from '@/libs/prisma'
+import NextAuth, { type NextAuthOptions } from 'next-auth'
+import GoogleProvider, { type GoogleProfile } from 'next-auth/providers/google'
 
 if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 	throw new Error('Missing GOOGLE_CLIENT_ID or GOOGLE_CLIENT_SECRET')
@@ -23,12 +23,14 @@ const authOptions: NextAuthOptions = {
 					return false
 				}
 
+				const profileUpdate = profile as GoogleProfile
+
 				const newUser = await prisma.user.create({
 					data: {
 						name: user.name,
 						email: user.email,
-						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-						emailVerified: (profile as any).email_verified,
+						emailVerified:
+							account.provider === 'google' ? profileUpdate.verified_email : false,
 						image: user.image,
 						accounts: {
 							create: [

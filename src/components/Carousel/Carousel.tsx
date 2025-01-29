@@ -13,7 +13,7 @@ export default function Carousel() {
 				<ul className={styles.layoutContainer()}>
 					{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
 						<li key={i}>
-							<Card title={'Camisa'} price={1000} />
+							<Card id={i} name={'camisa'} title={'Camisa'} price={1000} />
 						</li>
 					))}
 				</ul>
