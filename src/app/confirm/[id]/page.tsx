@@ -1,5 +1,6 @@
 import prisma from '@/libs/prisma'
 import { styles } from './styles'
+import ButtonUploadReceipt from '@/components/ButtonUploadReceipt/ButtonUploadReceipt'
 
 interface Props {
 	params: Promise<{ id: string }>
@@ -26,9 +27,7 @@ export default async function ConfirmPage({ params }: Props) {
 					<button className={styles.button()} type='button'>
 						Ver mas
 					</button>
-					<button className={styles.button()} type='button'>
-						Subir comprobante
-					</button>
+					<ButtonUploadReceipt paymentDataId={res?.paymentDataId} />
 				</div>
 			</div>
 		</div>
