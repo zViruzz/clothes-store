@@ -30,7 +30,6 @@ export default function ButtonUploadReceipt({
 				throw new Error(result.error)
 			}
 		} catch (error) {
-			alert(error.message)
 		} finally {
 			setUploading(false)
 		}
