@@ -18,7 +18,7 @@ export async function POST(request: Request) {
 		// Guardar el archivo en el volumen persistente
 		const buffer = await file.arrayBuffer()
 		const filename = `${Date.now()}-${file.name}`
-		const filePath = path.join(uploadDir, filename)
+		const filePath = path.join(process.cwd(), uploadDir, filename)
 
 		await fs.promises.writeFile(filePath, Buffer.from(buffer))
 
