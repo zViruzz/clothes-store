@@ -3,8 +3,6 @@ import fs from 'fs'
 import path from 'path'
 import prisma from '@/libs/prisma'
 
-const uploadDir = '/app/receipt' // Ruta del volumen persistente en Railway
-
 export async function POST(request: Request) {
 	const formData = await request.formData()
 	const file = formData.get('receipt') as File
@@ -18,7 +16,7 @@ export async function POST(request: Request) {
 		// Guardar el archivo en el volumen persistente
 		const buffer = await file.arrayBuffer()
 		const filename = `${Date.now()}-${file.name}`
-		const filePath = path.join(process.cwd(), uploadDir, filename)
+		const filePath = path.join(process.cwd(), 'receipt', filename)
 
 		await fs.promises.writeFile(filePath, Buffer.from(buffer))
 
