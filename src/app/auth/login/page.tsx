@@ -24,7 +24,6 @@ export default function loginPage() {
 				'Content-Type': 'application/json',
 			},
 		})
-		const resJson = res.json()
 		if (res.ok) {
 			router.push('/auth/login')
 		}

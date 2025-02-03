@@ -24,9 +24,6 @@ export default async function ConfirmPage({ params }: Props) {
 				</div>
 
 				<div className={styles.containerButtons()}>
-					<button className={styles.button()} type='button'>
-						Ver mas
-					</button>
 					<ButtonUploadReceipt paymentDataId={res?.paymentDataId} />
 				</div>
 			</div>

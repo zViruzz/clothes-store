@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { toast } from 'sonner'
 
 export default function ButtonUploadReceipt({
 	paymentDataId,
@@ -25,7 +26,7 @@ export default function ButtonUploadReceipt({
 
 			const result = await response.json()
 			if (response.ok) {
-				alert(`Comprobante subido:  ${result.path}`)
+				toast.success('Comprobante subido correctamente')
 			} else {
 				throw new Error(result.error)
 			}
@@ -36,7 +37,10 @@ export default function ButtonUploadReceipt({
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className='space-y-4'>
+		<form
+			onSubmit={handleSubmit}
+			className='space-y-4 flex justify-center items-center flex-col'
+		>
 			<input
 				type='file'
 				accept='application/pdf'
@@ -46,14 +50,14 @@ export default function ButtonUploadReceipt({
           file:mr-4 file:py-2 file:px-4
           file:rounded-full file:border-0
           file:text-sm file:font-semibold
-          file:bg-blue-50 file:text-blue-700
-          hover:file:bg-blue-100'
+          file:bg-neutral-200 file:text-neutral-800
+          hover:file:bg-blue-100 file:hover:cursor-pointer'
 			/>
 			<button
 				type='submit'
 				disabled={uploading}
-				className='px-4 py-2 bg-blue-600 text-white rounded-md
-          hover:bg-blue-700 disabled:bg-gray-400'
+				className='px-5 py-3 bg-black text-white rounded-xl font-medium
+          hover:bg-neutral-700 disabled:bg-gray-400'
 			>
 				{uploading ? 'Subiendo...' : 'Subir Comprobante'}
 			</button>

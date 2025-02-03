@@ -47,7 +47,6 @@ const authOptions: NextAuthOptions = {
 					},
 				})
 
-				console.warn('DEBUGPRINT[155]: route.ts:28: newUser=', newUser)
 				return true
 			} catch (error) {
 				console.error('🚀 ~ signIn ~ error:', error)

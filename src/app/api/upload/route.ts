@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server'
 import fs from 'fs'
 import path from 'path'
 import prisma from '@/libs/prisma'
+import { NextResponse } from 'next/server'
 
 const UPLOAD_DIR =
 	process.env.RAILWAY_VOLUME_MOUNT_PATH || path.join(process.cwd(), 'receipt')
@@ -16,22 +16,20 @@ export async function POST(request: Request) {
 	}
 
 	try {
-		// Guardar el archivo en el volumen persistente
 		const buffer = await file.arrayBuffer()
 		const filename = `${Date.now()}-${file.name}`
 		const filePath = path.join(UPLOAD_DIR, filename)
 
 		await fs.promises.writeFile(filePath, Buffer.from(buffer))
 
-		// Guardar la ruta en la base de datos
 		await prisma.paymentData.update({
 			where: { id: paymentDataId },
-			data: { receiptPath: `/app/receipt/${filename}` },
+			data: { receiptPath: path.join(UPLOAD_DIR, filename) },
 		})
 
 		return NextResponse.json({
 			message: 'Comprobante subido exitosamente',
-			path: `/app/receipt/${filename}`,
+			path: path.join(UPLOAD_DIR, filename),
 		})
 	} catch (error) {
 		console.error('Error:', error)
