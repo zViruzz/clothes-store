@@ -1,10 +1,13 @@
-import fs from 'fs'
 import path from 'path'
 import prisma from '@/libs/prisma'
 import { NextResponse } from 'next/server'
+import { S3 } from 'aws-sdk'
 
-const UPLOAD_DIR =
-	process.env.RAILWAY_VOLUME_MOUNT_PATH || path.join(process.cwd(), 'receipt')
+const s3 = new S3({
+	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+	region: process.env.AWS_REGION,
+})
 
 export async function POST(request: Request) {
 	const formData = await request.formData()
@@ -16,20 +19,27 @@ export async function POST(request: Request) {
 	}
 
 	try {
-		const buffer = await file.arrayBuffer()
+		const UPLOAD_DIR = 'proof-of-payment'
 		const filename = `${Date.now()}-${file.name}`
-		const filePath = path.join(UPLOAD_DIR, filename)
+		const receiptPath = path.join(UPLOAD_DIR, filename)
 
-		await fs.promises.writeFile(filePath, Buffer.from(buffer))
+		const params = {
+			Bucket: process.env.AWS_BUCKET_NAME ?? 'clothes-store',
+			Key: path.join(UPLOAD_DIR, filename),
+			Body: Buffer.from(await file.arrayBuffer()),
+			ContentType: file.type,
+		}
+
+		const data = await s3.upload(params).promise()
 
 		await prisma.paymentData.update({
 			where: { id: paymentDataId },
-			data: { receiptPath: path.join(UPLOAD_DIR, filename) },
+			data: { receiptPath },
 		})
 
 		return NextResponse.json({
 			message: 'Comprobante subido exitosamente',
-			path: path.join(UPLOAD_DIR, filename),
+			path: receiptPath,
 		})
 	} catch (error) {
 		console.error('Error:', error)
