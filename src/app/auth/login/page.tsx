@@ -2,7 +2,6 @@
 import SignInButton from '@/components/SignInButton/SignInButton'
 import AuthForm from '@/components/ui/AuthForm'
 import { useRouter } from 'next/navigation'
-import React from 'react'
 import { useForm } from 'react-hook-form'
 import { styles } from './styles'
 import { Input } from '@/components/ui/input'
@@ -84,7 +83,7 @@ export default function loginPage() {
 				</div>
 
 				<div>
-					<SignInButton />
+					<SignInButton text='Iniciar sesión con Google' />
 				</div>
 			</form>
 			<div className={styles.footerCard()}>

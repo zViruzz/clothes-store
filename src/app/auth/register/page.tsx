@@ -1,7 +1,10 @@
 'use client'
-import React from 'react'
+import SignInButton from '@/components/SignInButton/SignInButton'
+import AuthForm from '@/components/ui/AuthForm'
+import { Input } from '@/components/ui/input'
+import Link from 'next/link'
 import { useForm } from 'react-hook-form'
-import { container, containerForm } from './styles'
+import { styles } from './styles'
 
 export default function registerPage() {
 	const {
@@ -22,12 +25,14 @@ export default function registerPage() {
 	})
 
 	return (
-		<div className={container()}>
-			<form className={containerForm()} onSubmit={onSubmit}>
+		<AuthForm>
+			<form className={styles.containerForm()} onSubmit={onSubmit}>
+				<h3 className={styles.title()}>Registrate</h3>
 				<div>
-					<label htmlFor='username'>Username</label>
-					<input
+					<Input
+						className='h-11'
 						type='username'
+						placeholder='Tu@email.com'
 						{...register('username', {
 							required: {
 								value: true,
@@ -41,9 +46,10 @@ export default function registerPage() {
 				</div>
 
 				<div>
-					<label htmlFor='email'>Email</label>
-					<input
+					<Input
+						className='h-11'
 						type='email'
+						placeholder='Contraseña'
 						{...register('email', {
 							required: {
 								value: true,
@@ -56,26 +62,33 @@ export default function registerPage() {
 					)}
 				</div>
 
-				<div>
-					<label htmlFor='password'>Password</label>
-					<input
-						type='password'
-						{...register('password', {
-							required: {
-								value: true,
-								message: 'Password is requiresd',
-							},
-						})}
-					/>
-					{errors.password && (
-						<span className='text-red-500'>{`${errors.password.message}`}</span>
-					)}
+				<div className={styles.continueTagWith()}>
+					<div className={styles.containerLine()}>
+						<div className={styles.line()} />
+					</div>
+					<div className={styles.containerTag()}>
+						<span className={styles.tag()}>O continuar con</span>
+					</div>
 				</div>
 
-				<div className='bg-blue-500 rounded-xl p-2'>
-					<button type='submit'>Register</button>
+				<div>
+					<button className={styles.buttonLogin()} type='submit'>
+						Registrate
+					</button>
+				</div>
+
+				<div>
+					<SignInButton text='Registrate con Google' />
 				</div>
 			</form>
-		</div>
+			<div className={styles.footerCard()}>
+				<p>
+					¿Ya esta registrado?{' '}
+					<Link className='text-blue-600' href='/auth/register'>
+						Inisiar Sesión
+					</Link>
+				</p>
+			</div>
+		</AuthForm>
 	)
 }

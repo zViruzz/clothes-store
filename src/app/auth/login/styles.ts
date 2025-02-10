@@ -6,7 +6,7 @@ const stylesSlots = tv({
 			'bg-primary rounded-lg p-2 w-full hover:brightness-95 active:brightness-90',
 		title: 'text-2xl  my-4 text-center',
 		container: 'border  rounded-2xl',
-		containerForm: 'flex flex-col gap-4 [&>div>input]:text-black p-7',
+		containerForm: 'flex flex-col gap-4 p-7',
 		footerCard:
 			'bg-neutral-100 flex items-center justify-center gap-4 text-center h-16 rounded-b-2xl text-md',
 		continueTagWith: 'relative',
