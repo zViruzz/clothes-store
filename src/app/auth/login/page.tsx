@@ -6,6 +6,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { styles } from './styles'
 import { Input } from '@/components/ui/input'
+import Link from 'next/link'
 
 export default function loginPage() {
 	const {
@@ -32,12 +33,12 @@ export default function loginPage() {
 	return (
 		<AuthForm>
 			<form className={styles.containerForm()} onSubmit={onSubmit}>
+				<h3 className={styles.title()}>Iniciar Sesión</h3>
 				<div>
-					<label htmlFor='username'>Username</label>
 					<Input
-						className='w-72'
+						className='h-11'
 						type='username'
-						placeholder='Username'
+						placeholder='Tu@email.com'
 						{...register('username', {
 							required: {
 								value: true,
@@ -51,9 +52,10 @@ export default function loginPage() {
 				</div>
 
 				<div>
-					<label htmlFor='email'>Email</label>
 					<Input
+						className='h-11'
 						type='email'
+						placeholder='Contraseña'
 						{...register('email', {
 							required: {
 								value: true,
@@ -66,32 +68,33 @@ export default function loginPage() {
 					)}
 				</div>
 
+				<div className={styles.continueTagWith()}>
+					<div className={styles.containerLine()}>
+						<div className={styles.line()} />
+					</div>
+					<div className={styles.containerTag()}>
+						<span className={styles.tag()}>O continuar con</span>
+					</div>
+				</div>
+
 				<div>
-					<label htmlFor='password'>Password</label>
-					<Input
-						type='password'
-						{...register('password', {
-							required: {
-								value: true,
-								message: 'Password is requiresd',
-							},
-						})}
-					/>
-					{errors.password && (
-						<span className='text-red-500'>{`${errors.password.message}`}</span>
-					)}
+					<button className={styles.buttonLogin()} type='submit'>
+						Inisiar Sesión
+					</button>
 				</div>
 
 				<div>
 					<SignInButton />
 				</div>
-
-				<div>
-					<button className='bg-primary rounded-xl p-2 w-full' type='submit'>
-						Register
-					</button>
-				</div>
 			</form>
+			<div className={styles.footerCard()}>
+				<p>
+					¿No tienes cuenta?{' '}
+					<Link className='text-blue-600' href='/auth/register'>
+						Registrate
+					</Link>
+				</p>
+			</div>
 		</AuthForm>
 	)
 }
