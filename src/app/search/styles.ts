@@ -3,7 +3,7 @@ import { tv } from 'tailwind-variants'
 const stylesSlots = tv({
 	slots: {
 		layoutContainer:
-			'mx-auto flex max-w-screen-2xl flex-col gap-5 md:gap-9 px-4 pb-4 md:flex-row',
+			'mx-auto flex max-w-(--breakpoint-2xl) flex-col gap-5 md:gap-9 px-4 pb-4 md:flex-row',
 		navContainer: 'hidden md:flex flex-col gap-3',
 		navTitle: 'text-xl font-medium',
 		sectionWrapper: 'order-last min-h-screen w-full md:order-none md:pt-7',

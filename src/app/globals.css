@@ -1,47 +1,110 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/*@media (prefers-color-scheme: dark) {*/
-/*	:root {*/
-/*		--background: #0a0a0a;*/
-/*		--foreground: #ededed;*/
-/*	}*/
-/*}*/
+@custom-variant dark (&:is(.dark *));
 
-body {
-	margin: 0;
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
+@plugin 'tailwind-scrollbar-hide';
+
+@theme {
+  --color-primary: #cee6fc;
+  --color-secondary: #fff8c7;
+  --color-tertiary: #fedaf1;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --animate-carousel: scroll 40s linear infinite;
+  --animate-opacity: opacity 0.3s ease-in-out;
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0%);
+    }
+
+    100% {
+      transform: translateX(calc(-384px * 5 - 80px - 320px));
+    }
+  }
+
+  @keyframes opacity {
+    0% {
+      opacity: 0;
+      transform: scale(0.75);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
 }
 
 @layer utilities {
-	.text-balance {
-		text-wrap: balance;
-	}
-}
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+  /*@media (prefers-color-scheme: dark) {*/
+  /*	:root {*/
+  /*		--background: #0a0a0a;*/
+  /*		--foreground: #ededed;*/
+  /*	}*/
+  /*}*/
+
+  body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 }
 
-/* Para Firefox */
-input[type="number"] {
-	-moz-appearance: textfield;
-}
-img {
-	user-drag: none;
-	-webkit-user-drag: none;
-	user-select: none;
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
+@layer utilities {
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Para Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  img {
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
 }
 
 @layer base {
-	:root {
-		--radius: 0.5rem;
-	}
+  :root {
+    --radius: 0.5rem;
+  }
 }
