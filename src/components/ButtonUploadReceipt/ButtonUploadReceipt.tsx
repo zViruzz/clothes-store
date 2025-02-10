@@ -4,19 +4,21 @@ import { toast } from 'sonner'
 
 export default function ButtonUploadReceipt({
 	paymentDataId,
-}: { paymentDataId?: string }) {
+	userId,
+}: { paymentDataId?: string; userId?: string }) {
 	const [file, setFile] = useState<File | null>(null)
 	const [uploading, setUploading] = useState(false)
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
-		if (!file || !paymentDataId) return
+		if (!file || !paymentDataId || !userId) return
 
 		setUploading(true)
 
 		const formData = new FormData()
 		formData.append('receipt', file)
 		formData.append('paymentDataId', paymentDataId)
+		formData.append('userId', userId)
 
 		try {
 			const response = await fetch('/api/upload', {

@@ -41,7 +41,6 @@ export async function savePurchaseToDB(data: CheckoutData) {
 			},
 		})
 
-		console.warn('DEBUGPRINT[105]: database.ts:8: res=', res)
 		return res
 	} catch (error) {
 		console.log('error saving purchase:', error)

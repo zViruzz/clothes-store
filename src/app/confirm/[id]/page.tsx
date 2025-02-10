@@ -24,7 +24,7 @@ export default async function ConfirmPage({ params }: Props) {
 				</div>
 
 				<div className={styles.containerButtons()}>
-					<ButtonUploadReceipt paymentDataId={res?.paymentDataId} />
+					<ButtonUploadReceipt paymentDataId={res?.paymentDataId} userId={res?.userId} />
 				</div>
 			</div>
 		</div>

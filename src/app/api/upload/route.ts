@@ -12,6 +12,7 @@ const s3 = new S3({
 export async function POST(request: Request) {
 	const formData = await request.formData()
 	const file = formData.get('receipt') as File
+	const userId = formData.get('userId') as string
 	const paymentDataId = formData.get('paymentDataId') as string
 
 	if (!file || !paymentDataId) {
@@ -21,7 +22,7 @@ export async function POST(request: Request) {
 	try {
 		const UPLOAD_DIR = 'proof-of-payment'
 		const filename = `${Date.now()}-${file.name}`
-		const receiptPath = path.join(UPLOAD_DIR, filename)
+		const receiptPath = path.join(UPLOAD_DIR, userId, filename)
 
 		const params = {
 			Bucket: process.env.AWS_BUCKET_NAME ?? 'clothes-store',
