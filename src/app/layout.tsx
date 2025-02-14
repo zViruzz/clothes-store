@@ -30,8 +30,8 @@ export default async function RootLayout({
 		<html lang='en' className='relative'>
 			<ProviderSession>
 				<body className={inter.className}>
+					<Toaster position='bottom-center' richColors />
 					<CartProvider>
-						<Toaster position='bottom-center' richColors />
 						<CartBar />
 						<Background />
 						<Header session={session} />

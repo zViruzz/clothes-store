@@ -5,23 +5,36 @@ import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { styles } from './styles'
+import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 
 export default function registerPage() {
+	const router = useRouter()
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
+		watch,
 	} = useForm()
 
 	const onSubmit = handleSubmit(async (data) => {
-		const res = await fetch('/api/auth/register', {
-			method: 'POST',
-			body: JSON.stringify(data),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
-		const resJson = res.json()
+		try {
+			const res = await fetch('/api/auth/register', {
+				method: 'POST',
+				body: JSON.stringify(data),
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			})
+			const resJson = await res.json()
+			if (resJson.success) {
+				toast.success('Registro exitoso')
+				return router.push('/auth/login')
+			}
+			toast.error(`Error al registrar: ${resJson.message}`)
+		} catch (error) {
+			toast.error('Error al registrar')
+		}
 	})
 
 	return (
@@ -31,12 +44,20 @@ export default function registerPage() {
 				<div>
 					<Input
 						className='h-11'
-						type='username'
-						placeholder='Tu@email.com'
+						type='text'
+						placeholder='Nombre completo'
 						{...register('username', {
 							required: {
 								value: true,
-								message: 'Username is requiresd',
+								message: 'Tu nombre completo es requerido',
+							},
+							minLength: {
+								value: 3,
+								message: 'Tu nombre debe tener al menos 8 caracteres',
+							},
+							maxLength: {
+								value: 40,
+								message: 'Tu nombre debe tener menos de 40 caracteres',
 							},
 						})}
 					/>
@@ -49,16 +70,64 @@ export default function registerPage() {
 					<Input
 						className='h-11'
 						type='email'
-						placeholder='Contraseña'
+						placeholder='Tu@email.com'
 						{...register('email', {
 							required: {
 								value: true,
-								message: 'Email is requiresd',
+								message: 'Tu email es requerido',
 							},
 						})}
 					/>
 					{errors.email && (
 						<span className='text-red-500'>{`${errors.email.message}`}</span>
+					)}
+				</div>
+
+				<div>
+					<Input
+						className='h-11'
+						type='password'
+						placeholder='Contraseña'
+						{...register('password', {
+							required: {
+								value: true,
+								message: 'Tu contraseña es requerida',
+							},
+							minLength: {
+								value: 7,
+								message: 'Tu contraseña debe tener al menos 8 caracteres',
+							},
+							maxLength: {
+								value: 20,
+								message: 'Tu contraseña debe tener menos de 20 caracteres',
+							},
+						})}
+					/>
+					{errors.password && (
+						<span className='text-red-500'>{`${errors.password.message}`}</span>
+					)}
+				</div>
+
+				<div>
+					<Input
+						className='h-11'
+						type='password'
+						placeholder='Confirmar contraseña'
+						{...register('confirmPassword', {
+							required: {
+								value: true,
+								message: 'Confirma tu contraseña',
+							},
+							validate: (value) => {
+								if (value !== watch('password')) {
+									return 'Las contraseñas no coinciden'
+								}
+								return true
+							},
+						})}
+					/>
+					{errors.confirmPassword && (
+						<span className='text-red-500'>{`${errors.confirmPassword.message}`}</span>
 					)}
 				</div>
 

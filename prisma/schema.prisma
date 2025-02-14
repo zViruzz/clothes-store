@@ -12,6 +12,7 @@ model User {
   name          String?
   email         String?    @unique
   emailVerified Boolean?
+  password      String?
   image         String?
   accounts      Account[]
   purchases     Purchase[]
