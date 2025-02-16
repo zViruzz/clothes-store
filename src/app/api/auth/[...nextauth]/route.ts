@@ -39,7 +39,7 @@ const authOptions: NextAuthOptions = {
 					},
 				})
 
-				if (!user) {
+				if (!user || !user.password) {
 					throw new Error('No user found')
 				}
 				const matchPassword = await bcrypt.compare(credentials.password, user.password)
@@ -59,10 +59,12 @@ const authOptions: NextAuthOptions = {
 	callbacks: {
 		async signIn({ user, account, profile, email, credentials }) {
 			try {
-				if (!user) {
+				if (!user || !user.email) {
+					console.error('user undefined')
 					return false
 				}
-				if (!account) {
+				if (!account || !account.id_token) {
+					console.error('account undefined')
 					return false
 				}
 
@@ -78,7 +80,6 @@ const authOptions: NextAuthOptions = {
 					return true
 				}
 
-				console.log('Login with google save')
 				const newUser = await prisma.user.create({
 					data: {
 						name: user.name,
