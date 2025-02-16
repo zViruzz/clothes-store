@@ -1,11 +1,13 @@
 'use client'
 import SignInButton from '@/components/SignInButton/SignInButton'
 import AuthForm from '@/components/ui/AuthForm'
+import { Input } from '@/components/ui/input'
+import { signIn } from 'next-auth/react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { styles } from './styles'
-import { Input } from '@/components/ui/input'
-import Link from 'next/link'
 
 export default function loginPage() {
 	const {
@@ -17,15 +19,22 @@ export default function loginPage() {
 	const router = useRouter()
 
 	const onSubmit = handleSubmit(async (data) => {
-		const res = await fetch('/api/auth/register', {
-			method: 'POST',
-			body: JSON.stringify(data),
-			headers: {
-				'Content-Type': 'application/json',
-			},
+		console.warn('DEBUGPRINT[184]: page.tsx:21: data=', data)
+		const res = await signIn('credentials', {
+			email: data.email,
+			password: data.password,
+			redirect: false,
 		})
-		if (res.ok) {
-			router.push('/auth/login')
+		if (res === undefined) {
+			toast.error('Error al iniciar sesión')
+			return
+		}
+
+		console.warn('DEBUGPRINT[185]: page.tsx:23: res=', res)
+		if (res.error) {
+			toast.error(res.error)
+		} else {
+			router.push('/')
 		}
 	})
 
@@ -36,25 +45,8 @@ export default function loginPage() {
 				<div>
 					<Input
 						className='h-11'
-						type='username'
-						placeholder='Tu@email.com'
-						{...register('username', {
-							required: {
-								value: true,
-								message: 'Username is requiresd',
-							},
-						})}
-					/>
-					{errors.username && (
-						<span className='text-red-500'>{`${errors.username.message}`}</span>
-					)}
-				</div>
-
-				<div>
-					<Input
-						className='h-11'
 						type='email'
-						placeholder='Contraseña'
+						placeholder='Tu@email.com'
 						{...register('email', {
 							required: {
 								value: true,
@@ -64,6 +56,23 @@ export default function loginPage() {
 					/>
 					{errors.email && (
 						<span className='text-red-500'>{`${errors.email.message}`}</span>
+					)}
+				</div>
+
+				<div>
+					<Input
+						className='h-11'
+						type='password'
+						placeholder='Contraseña'
+						{...register('password', {
+							required: {
+								value: true,
+								message: 'Password is requiresd',
+							},
+						})}
+					/>
+					{errors.password && (
+						<span className='text-red-500'>{`${errors.password.message}`}</span>
 					)}
 				</div>
 

@@ -4,10 +4,8 @@ import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 export default function SignInButton({ text }: { text: string }) {
-	const router = useRouter()
 	const handleClick = async () => {
-		await signIn()
-		router.push('/')
+		await signIn('google')
 	}
 
 	return (
