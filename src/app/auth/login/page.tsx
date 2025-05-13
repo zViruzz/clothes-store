@@ -2,9 +2,10 @@
 import SignInButton from '@/components/SignInButton/SignInButton'
 import AuthForm from '@/components/ui/AuthForm'
 import { Input } from '@/components/ui/input'
-import { signIn } from 'next-auth/react'
+import { getSession, signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { styles } from './styles'
@@ -19,7 +20,6 @@ export default function loginPage() {
 	const router = useRouter()
 
 	const onSubmit = handleSubmit(async (data) => {
-		console.warn('DEBUGPRINT[184]: page.tsx:21: data=', data)
 		const res = await signIn('credentials', {
 			email: data.email,
 			password: data.password,
@@ -30,13 +30,23 @@ export default function loginPage() {
 			return
 		}
 
-		console.warn('DEBUGPRINT[185]: page.tsx:23: res=', res)
 		if (res.error) {
 			toast.error(res.error)
 		} else {
 			router.push('/')
 		}
 	})
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		const checkSession = async () => {
+			const session = await getSession()
+			if (session) {
+				router.push('/')
+			}
+		}
+		checkSession()
+	}, [])
 
 	return (
 		<AuthForm>
