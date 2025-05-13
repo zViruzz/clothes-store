@@ -3,10 +3,10 @@ import SignInButton from '@/components/SignInButton/SignInButton'
 import AuthForm from '@/components/ui/AuthForm'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
-import { useForm } from 'react-hook-form'
-import { styles } from './styles'
-import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import { styles } from './styles'
 
 export default function registerPage() {
 	const router = useRouter()

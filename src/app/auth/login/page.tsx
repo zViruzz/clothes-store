@@ -87,7 +87,7 @@ export default function loginPage() {
 
 				<div>
 					<button className={styles.buttonLogin()} type='submit'>
-						Inisiar Sesión
+						Iniciar Sesión
 					</button>
 				</div>
 

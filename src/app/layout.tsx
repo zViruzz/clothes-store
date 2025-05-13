@@ -6,8 +6,8 @@ import type { Metadata } from 'next'
 import { Quicksand } from 'next/font/google'
 import { Toaster } from 'sonner'
 import './globals.css'
-import { getServerSession } from 'next-auth'
 import ProviderSession from '@/components/ProviderSession'
+import { getServerSession } from 'next-auth'
 
 const inter = Quicksand({
 	subsets: ['latin'],
@@ -27,7 +27,7 @@ export default async function RootLayout({
 	const session = await getServerSession()
 
 	return (
-		<html lang='en' className='relative'>
+		<html lang='en' className='relative bg-white'>
 			<ProviderSession>
 				<body className={inter.className}>
 					<Toaster position='bottom-center' richColors />

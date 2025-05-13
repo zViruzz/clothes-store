@@ -1,8 +1,8 @@
 import prisma from '@/libs/prisma'
 import bcrypt from 'bcryptjs'
 import NextAuth, { type NextAuthOptions } from 'next-auth'
-import GoogleProvider, { type GoogleProfile } from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import GoogleProvider, { type GoogleProfile } from 'next-auth/providers/google'
 
 if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 	throw new Error('Missing GOOGLE_CLIENT_ID or GOOGLE_CLIENT_SECRET')
