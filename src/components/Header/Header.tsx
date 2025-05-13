@@ -3,15 +3,15 @@ import { useCartContext } from '@/context/card.context'
 import CartIcon from '@/icons/CartIcon'
 import CloseIcon from '@/icons/CloseIcon'
 import MenuIcon from '@/icons/MenuIcon'
+import ProfileIcon from '@/icons/ProfileIcon'
 import { cn } from '@/libs/utils'
 import { useCart } from '@/stores/cart'
+import type { Session } from 'next-auth'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import Search from '../Search/Search'
 import { styles } from './HeaderStyles'
-import ProfileIcon from '@/icons/ProfileIcon'
-import type { Session } from 'next-auth'
 
 interface Props {
 	session: Session | null

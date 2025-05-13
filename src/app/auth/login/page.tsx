@@ -37,7 +37,6 @@ export default function loginPage() {
 		}
 	})
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		const checkSession = async () => {
 			const session = await getSession()
@@ -46,7 +45,7 @@ export default function loginPage() {
 			}
 		}
 		checkSession()
-	}, [])
+	}, [router])
 
 	return (
 		<AuthForm>
