@@ -1,12 +1,19 @@
-import path from 'path'
+import path from 'node:path'
 import prisma from '@/libs/prisma'
 import { NextResponse } from 'next/server'
-import { S3 } from 'aws-sdk'
+import { S3Client } from '@aws-sdk/client-s3'
+import { Upload } from '@aws-sdk/lib-storage'
 
-const s3 = new S3({
-	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-	region: process.env.AWS_REGION,
+if (!process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY) {
+	throw new Error('Missing AWS_ACCESS_KEY_ID or AWS_SECRET_ACCESS_KEY')
+}
+
+const s3Client = new S3Client({
+	region: process.env.AWS_S3_REGION,
+	credentials: {
+		accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+		secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+	},
 })
 
 export async function POST(request: Request) {
@@ -24,14 +31,22 @@ export async function POST(request: Request) {
 		const filename = `${Date.now()}-${file.name}`
 		const receiptPath = path.join(UPLOAD_DIR, userId, filename)
 
-		const params = {
-			Bucket: process.env.AWS_BUCKET_NAME ?? 'clothes-store',
-			Key: path.join(UPLOAD_DIR, filename),
-			Body: Buffer.from(await file.arrayBuffer()),
-			ContentType: file.type,
-		}
+		const parallelUploads3 = new Upload({
+			client: s3Client,
+			params: {
+				Bucket: process.env.AWS_BUCKET_NAME ?? 'clothes-store',
+				Key: path.join(UPLOAD_DIR, filename),
+				Body: Buffer.from(await file.arrayBuffer()),
+				ContentType: file.type,
+			},
+			queueSize: 3,
+		})
 
-		const data = await s3.upload(params).promise()
+		parallelUploads3.on('httpUploadProgress', (progress) => {
+			console.log('Upload progress', progress)
+		})
+
+		await parallelUploads3.done()
 
 		await prisma.paymentData.update({
 			where: { id: paymentDataId },
