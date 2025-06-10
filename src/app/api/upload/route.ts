@@ -35,7 +35,7 @@ export async function POST(request: Request) {
 			client: s3Client,
 			params: {
 				Bucket: process.env.AWS_BUCKET_NAME ?? 'clothes-store',
-				Key: path.join(UPLOAD_DIR, filename),
+				Key: path.join(UPLOAD_DIR, userId, filename),
 				Body: Buffer.from(await file.arrayBuffer()),
 				ContentType: file.type,
 			},
