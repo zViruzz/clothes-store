@@ -119,7 +119,7 @@ export default function pageProducts() {
 			return result.data
 		}
 
-		startTransition(() => {
+		startTransition(async () => {
 			toast.promise(createCompleteProduct(), {
 				duration: 6500,
 				loading: 'Subiendo imagen y creando producto...',

@@ -15,7 +15,7 @@ export default async function layout({ children }: { children: React.ReactNode }
 		},
 	})
 
-	if (user?.role !== 'CUSTOMER') {
+	if (user?.role === 'CUSTOMER') {
 		redirect('/')
 	}
 	return <div>{children}</div>
