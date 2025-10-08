@@ -12,28 +12,27 @@ import { toast } from 'sonner'
 import { getProductErrorMessage } from '@/utils/errorHandlers'
 
 export default function pageProducts() {
-	const [formData, setFormData] = useState({
-		name: '',
-		title: '',
-		category: '',
-		description: '',
-		price: '',
-		sizes: [] as string[],
-		color_scheme: '',
-		url_images: [],
-	})
-
 	// const [formData, setFormData] = useState({
-	// 	name: 'nintendo-switch-2',
-	// 	title: 'Nintendo Switch 2',
-	// 	category: 'Electrónicos',
-	// 	description:
-	// 		'Nintendo Switch es un consola de videojuegos desarrollada por Nintendo. Fue lanzada el 3 de marzo de 2017 en Japón, el 10 de marzo de 2017 en Estados Unidos y Canadá, el 17 de marzo de 2017 en Europa y el 24 de marzo de 2017 en Australia y Nueva Zelanda.',
-	// 	price: '400000',
-	// 	sizes: ['XS', 'S', 'M', 'L'] as string[],
-	// 	color_scheme: 'warm',
+	// 	name: '',
+	// 	title: '',
+	// 	category: '',
+	// 	description: '',
+	// 	price: '',
+	// 	sizes: [] as string[],
+	// 	color_scheme: '',
 	// 	url_images: [],
 	// })
+
+	const [formData, setFormData] = useState({
+		name: 'lo',
+		title: 'Nintendo Switch 2',
+		category: 'Electrónicos',
+		description: 'lol',
+		price: '400000',
+		sizes: ['XS', 'S', 'M', 'L'] as string[],
+		color_scheme: 'warm',
+		url_images: [],
+	})
 
 	const [isPending, startTransition] = useTransition()
 	console.log('isPending', isPending)
@@ -63,10 +62,10 @@ export default function pageProducts() {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
 
-		if (!uploadedImage) {
-			alert('Falta agregar una imagen')
-			return
-		}
+		// if (!uploadedImage) {
+		// 	alert('Falta agregar una imagen')
+		// 	return
+		// }
 
 		const createCompleteProduct = async () => {
 			const response = await fetch('/api/admin/generate-signed-url', {
@@ -112,7 +111,7 @@ export default function pageProducts() {
 			console.log('result', result)
 
 			if (!result.success) {
-				const errorMessage = getProductErrorMessage(result.errors)
+				const errorMessage = getProductErrorMessage(result)
 				throw new Error(errorMessage)
 			}
 
@@ -139,6 +138,7 @@ export default function pageProducts() {
 					return `✅ Producto "${data?.name}" creado`
 				},
 				error: (err) => `${err.message}`,
+				richColors: true,
 			})
 		})
 	}

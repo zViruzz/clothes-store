@@ -1,25 +1,34 @@
-export const getProductErrorMessage = (error: string | undefined) => {
-	if (!error || error.length === 0) {
+type ActionError = {
+	success: false
+	message: string
+	errors?: Record<string, string[]>
+}
+
+export const getProductErrorMessage = (result: ActionError) => {
+	if (!result.errors || Object.keys(result.errors).length === 0) {
 		return 'No se pudo crear el producto. Intenta nuevamente.'
 	}
 
-	// Mapeo de errores específicos a mensajes amigables
-	const errorMappings: Record<string, string> = {
-		'failed on the fields: (`name`)':
-			'Ya existe un producto con ese nombre. Por favor, usa un nombre diferente.',
-		validation: 'Los datos del producto no son válidos. Verifica todos los campos.',
-		price: 'El precio debe ser un número válido.',
-		category: 'La categoría seleccionada no es válida.',
-		url_images: 'Error al procesar las imágenes del producto.',
+	const fieldLabels: Record<string, string> = {
+		name: 'Nombre',
+		title: 'Título',
+		category: 'Categoría',
+		description: 'Descripción',
+		price: 'Precio',
+		sizes: 'Tallas',
+		color_scheme: 'Esquema de color',
+		url_images: 'Imágenes',
+	}
+	const errorMessages: string[] = []
+
+	for (const [field, messages] of Object.entries(result.errors)) {
+		const fieldLabel = fieldLabels[field] || field
+		errorMessages.push(`• ${fieldLabel}: ${messages.join(', ')}`)
 	}
 
-	// Buscar si algún error conocido está presente
-	for (const [errorKey, message] of Object.entries(errorMappings)) {
-		if (error.includes(errorKey)) {
-			return message
-		}
+	if (errorMessages.length === 1) {
+		return errorMessages[0].replace('• ', '')
 	}
 
-	// Si no encuentra un error específico, mostrar el primer error
-	return `Error: ${error[0]}`
+	return `Errores en el formulario:\n ${errorMessages.join('\n')}`
 }

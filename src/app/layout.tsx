@@ -30,7 +30,7 @@ export default async function RootLayout({
 		<html lang='en' className='relative bg-white'>
 			<ProviderSession>
 				<body className={inter.className}>
-					<Toaster position='bottom-center' richColors />
+					<Toaster position='bottom-center' />
 					<CartProvider>
 						<CartBar />
 						<Background />
