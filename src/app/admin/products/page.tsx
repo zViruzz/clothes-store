@@ -62,10 +62,13 @@ export default function pageProducts() {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
 
-		// if (!uploadedImage) {
-		// 	alert('Falta agregar una imagen')
-		// 	return
-		// }
+		if (!uploadedImage) {
+			toast.warning('Falta agregar una imagen', {
+				duration: 5000,
+				richColors: true,
+			})
+			return
+		}
 
 		const createCompleteProduct = async () => {
 			const response = await fetch('/api/admin/generate-signed-url', {
