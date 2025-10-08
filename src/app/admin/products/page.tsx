@@ -12,27 +12,27 @@ import { toast } from 'sonner'
 import { getProductErrorMessage } from '@/utils/errorHandlers'
 
 export default function pageProducts() {
-	// const [formData, setFormData] = useState({
-	// 	name: '',
-	// 	title: '',
-	// 	category: '',
-	// 	description: '',
-	// 	price: '',
-	// 	sizes: [] as string[],
-	// 	color_scheme: '',
-	// 	url_images: [],
-	// })
-
 	const [formData, setFormData] = useState({
-		name: 'lo',
-		title: 'Nintendo Switch 2',
-		category: 'Electrónicos',
-		description: 'lol',
-		price: '400000',
-		sizes: ['XS', 'S', 'M', 'L'] as string[],
-		color_scheme: 'warm',
+		name: '',
+		title: '',
+		category: '',
+		description: '',
+		price: '',
+		sizes: [] as string[],
+		color_scheme: '',
 		url_images: [],
 	})
+
+	// const [formData, setFormData] = useState({
+	// 	name: 'lo',
+	// 	title: 'Nintendo Switch 2',
+	// 	category: 'Electrónicos',
+	// 	description: 'lol',
+	// 	price: '400000',
+	// 	sizes: ['XS', 'S', 'M', 'L'] as string[],
+	// 	color_scheme: 'warm',
+	// 	url_images: [],
+	// })
 
 	const [isPending, startTransition] = useTransition()
 	console.log('isPending', isPending)
